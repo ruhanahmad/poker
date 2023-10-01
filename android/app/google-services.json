@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "343630661629",
+    "project_id": "poker-d2f61",
+    "storage_bucket": "poker-d2f61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343630661629:android:99c49d9ebae6fa81137b94",
+        "android_client_info": {
+          "package_name": "com.poker.pokergame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChg5TRJ2Tjs4nclKNN37A81k5dxP8QY0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
