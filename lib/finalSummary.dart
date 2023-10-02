@@ -8,29 +8,18 @@ import 'package:poker/models/player_model.dart';
 
 import 'controllers/data_controller.dart';
 
-class ThirdScreen extends StatelessWidget {
+class FinalSummary extends StatelessWidget {
   List<Container> buyInsList = [];
 
-  List<bool> isEditing = [];
 
-  List<TextEditingController> oddTextControllers = [];
-  List<TextEditingController> evenTextControllers = [];
 
-  @override
-  void dispose() {
-    for (var controller in oddTextControllers) {
-      controller.dispose();
-    }
-    for (var controller1 in evenTextControllers) {
-      controller1.dispose();
-    }
-  }
+
+
+
 
   int n = 0;
 
-  void toggleEdit(int index) {
-    isEditing[index] = !isEditing[index];
-  }
+
 
  DataController _ = Get.find();
     Future<void>? alerts(BuildContext context,int leng){
@@ -54,30 +43,8 @@ class ThirdScreen extends StatelessWidget {
                   ),
                 ),
               ),
-               ElevatedButton(
-          onPressed: () {
-          
-              _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: [],finalAmount: "",time: ""));
-              return;
-            
-
-          },
-          style: ElevatedButton.styleFrom(primary: const Color(0xFF7D37F0)),
-          child: const Text('Add'),
-        ),
-        
-                      ElevatedButton(
-          onPressed: () {
-            Get.to(()=>ThirdScreen());
-          
-              // _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: []));
-              // return;
-            
-
-          },
-          style: ElevatedButton.styleFrom(primary: const Color(0xFF7D37F0)),
-          child: const Text('OK'),
-        ),
+           
+                   
            ],
          ),
       );
@@ -117,8 +84,10 @@ class ThirdScreen extends StatelessWidget {
         height: size.height,
         child: Column(
           children: [
-            Text(_.gameNameController.text,
-                style: const TextStyle(color: Colors.white, fontSize: 40.0)),
+            Text("Final Summary",
+                style: const TextStyle(  fontSize: 40.0,fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,)),
             const SizedBox(
               height: 20,
             ),
@@ -161,13 +130,25 @@ class ThirdScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 50.0),
                 child: Row(
                   children: [
-                    Text('Players', style: TextStyle(color: Colors.white)),
+                    Text('Players', style: TextStyle(fontSize: 15,fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,)),
                     Spacer(),
-                    Text(' Total Buy Ins',
-                        style: TextStyle(color: Colors.white)),
+                    Text('Buy Ins',
+                        style: TextStyle(fontSize: 15,fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,)),
                     Spacer(),
-                    Text('Numerical Amount ',
-                        style: TextStyle(color: Colors.white)),
+                    Text('Buy Out ',
+                        style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,)),
+
+                          Spacer(),
+                    Text('Net',
+                        style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,)),
                   ],
                 ),
               ),
@@ -272,14 +253,21 @@ class _PlayerWidgetState extends State<PlayerWidget> {
                             fontSize: 20),
                       ),
                       Text(
-                        data.buyIn.toString(),
+                        data.amount.toString(),
                         style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
                       ),
                       Text(
-                        data.amount.toString(),
+                        data.finalAmount.toString(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                        Text(
+                        data.finalAmount.toString(),
                         style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

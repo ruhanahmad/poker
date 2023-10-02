@@ -55,45 +55,27 @@ class SecondScreen extends StatelessWidget {
                          
       //                    }).toList();
                         
-             _.ref = await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").add({"gameNamw":_.gameNameController.text});
-             _.update();
+//              _.ref = await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").add({"gameNamw":_.gameNameController.text});
+//              _.update();
 
-                               final usersTwow =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
-                    // thek hay karo kaam ok
-        //    final games=   FirebaseFirestore.instance.collection("game");
-                         
-//              await   _.playersList.map((player) async{
-//                                   final playerlists = 
-                                
-//                                   {
+//                                final usersTwow =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
+                      
+//                 for (var player in _.playersList){
+
+//                   final playerlists = {
 //                   "name":player.name ,
 //                   "buyin":player.buyIn,
 //                   "amount":player.amount,
 //                   "address":player.addresses.map((addr) => addr.toJson()).toList(),
-       
-
-//                   };
-
-// await  users.add(playerlists);
-                  
-
-//                 });     
-                for (var player in _.playersList){
-
-                  final playerlists = {
-                  "name":player.name ,
-                  "buyin":player.buyIn,
-                  "amount":player.amount,
-                  "address":player.addresses.map((addr) => addr.toJson()).toList(),
-                  "finalStack":"",
-                  "gameName":_.gameNameController.text
+//                   "finalStack":"",
+//                   "gameName":_.gameNameController.text
 
           
 
-                  };
+//                   };
 
-await  usersTwow.add(playerlists);
-                }
+// await  usersTwow.add(playerlists);
+//                 }
               
                 _.startTime = DateTime.now();
 
@@ -181,7 +163,7 @@ await  usersTwow.add(playerlists);
         ElevatedButton(
           onPressed: () {
             if (_.playersList.length < _.maxPlayers.value) {
-              _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: []));
+              _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: [],finalAmount: "",time:""));
               return;
             }
             Get.closeAllSnackbars();

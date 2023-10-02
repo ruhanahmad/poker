@@ -16,12 +16,16 @@ class Player {
   int buyIn;
   int amount;
    List<PlayerCashInOut> addresses = [];
+   String finalAmount;
+   String time;
 
   Player({
     required this.name,
     required this.buyIn,
     required this.amount,
     required this.addresses,
+    required this.finalAmount,
+    required this.time,
     
   });
 
@@ -32,6 +36,8 @@ class Player {
     addresses: (json["addresses"] as List<dynamic>)
             .map((addrJson) => PlayerCashInOut.fromJson(addrJson))
             .toList(),
+   finalAmount: json["finalAmount"]   ,
+   time:json["time"]      
   );
 
   Map<String, dynamic> toJson() => {
@@ -39,6 +45,8 @@ class Player {
     "buy_in": buyIn,
     "amount": amount,
       "addresses": List<dynamic>.from(addresses.map((x) => x.toJson())),
+      "finalAmount":finalAmount,
+      "time":time
   };
 }
 
@@ -53,12 +61,14 @@ class PlayerCashInOut {
     String time;
     int buyIn;
     int amount;
+    
 
     PlayerCashInOut({
        
         required this.time,
         required this.buyIn,
         required this.amount,
+      
     });
 
     factory PlayerCashInOut.fromJson(Map<String, dynamic> json) => PlayerCashInOut(
@@ -66,6 +76,7 @@ class PlayerCashInOut {
         time: json["time"],
         buyIn: json["buy_in"],
         amount: json["amount"],
+    
     );
 
     Map<String, dynamic> toJson() => {
@@ -73,5 +84,6 @@ class PlayerCashInOut {
         "time": time,
         "buy_in": buyIn,
         "amount": amount,
+      
     };
 }
