@@ -4,18 +4,34 @@ import 'package:get/get.dart';
 import 'package:poker/authentication.dart';
 import 'package:poker/homepage.dart';
 import 'package:poker/playerdetailpage.dart';
-
+import 'package:poker/test.dart';
+import 'dart:ui' as ui;
 void main() async{
    WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(PokerApp());}
+  runApp(
+      // new MediaQuery(
+      //   data: new MediaQueryData.fromWindow(ui.window),
+      //   child: new Directionality(
+      //       textDirection: TextDirection.rtl,
+      //       child: 
+      //       WebViewExample()
+            
+      //       )),
+                PokerApp(),
+            );
+ 
+    // WebViewExample() ,
+    }
 
 class PokerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthScreen(),
+      home: 
+    //  WebViewExample (), 
+     AuthScreen(),
     );
   }
 }

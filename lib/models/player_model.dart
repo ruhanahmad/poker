@@ -59,7 +59,7 @@ String playerCashInOutToJson(PlayerCashInOut data) => json.encode(data.toJson())
 class PlayerCashInOut {
   
     String time;
-    int buyIn;
+    double buyIn;
     int amount;
     
 

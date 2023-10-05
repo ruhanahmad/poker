@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:poker/controllers/data_controller.dart';
 import 'package:poker/finalSummary.dart';
 import 'package:poker/newnew.dart';
+import 'package:poker/test.dart';
+import 'package:poker/webvioew.dart';
 
 
 
@@ -16,6 +18,7 @@ class ContainerSelectionScreen extends StatefulWidget {
 class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
   int selectedContainerIndex = -1; // Initialize with -1 to indicate no selection.
   List<TextEditingController> evenTextControllers = [];
+    DataController _ = Get.put(DataController());
   @override
   void dispose() {
 
@@ -25,6 +28,14 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
     // TODO: implement dispose
     super.dispose();
    
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   print( _.playersList.first.finalAmount);
+
   }
   @override
   Widget build(BuildContext context) {
@@ -149,7 +160,8 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
                                   onChanged: (value){
                                  _.playersList[index].finalAmount   =value;
                                  _.playersList[index].time   =DateTime.now().toString();
-                                 print(  _.playersList[index].time);
+                              
+                                 print(  _.playersList[index].finalAmount);
                               
                                   }
                                   ,
@@ -170,9 +182,37 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
           ),
           GestureDetector(
             onTap: (){
-              Get.to(()=>FinalSummary());
+         setState(() {
+            //  _.playersList[widget.index].amount  -=  int.parse(amountController.text)  ;
+         });
+                  Get.to(()=> WebViewExample());
+              // Get.to(()=>FinalSummary());
             },
-            child: Text("data"))
+            child: Text("data")),
+
+
+             GestureDetector(
+            onTap: (){
+           for (var i in _.playersList){
+            if(i.amount > 0  ){
+              
+                _.winner[i.name] = i.amount;
+
+                print(_.winner);
+            }
+            else {
+       
+                 _.losser[i.name] = i.amount;
+
+                print("Loser" + "${_.losser}");
+
+
+
+            }
+           }
+              // Get.to(()=>FinalSummary());
+            },
+            child: Text("Function"))
         ],
       ),
     );

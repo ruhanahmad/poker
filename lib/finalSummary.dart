@@ -396,7 +396,7 @@ List<Player> mainRecords = [];
       // await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
 
                          setState(() {
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: showvalue, amount:int.parse(amountController.text)  ));
+                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: showvalue.toDouble(), amount:int.parse(amountController.text)  ));
 isGreen = true; isGreen = true;
                           print(isGreen);
                           print(data.addresses);
@@ -415,7 +415,7 @@ isGreen = true; isGreen = true;
                     GestureDetector(
                       onTap: (){
                         setState(() {
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: showvalue, amount:int.parse(amountController.text) ));
+                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: showvalue.toDouble(), amount:int.parse(amountController.text) ));
 
                           print(data.addresses);
                           isGreen = false;

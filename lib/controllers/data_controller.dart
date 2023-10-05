@@ -14,6 +14,9 @@ class DataController extends GetxController
   var playersList = <Player>[].obs;
    var playersListq = <PlayerCashInOut>[].obs;
    DocumentReference? ref;
+    Map winner ={};
+     Map losser = {};
+
    
 
   var nn;

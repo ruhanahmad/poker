@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:poker/finalStack.dart';
 
 import 'package:poker/models/player_model.dart';
+import 'package:intl/intl.dart';
 
 import 'controllers/data_controller.dart';
 
@@ -238,6 +239,12 @@ class _PlayerWidgetState extends State<PlayerWidget> {
   }
 
   int showvalue = 1;
+    double showvalues = 1;
+
+  toggleBar(bool nice) {
+
+
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -354,7 +361,7 @@ List<Player> mainRecords = [];
                     const SizedBox(width: 10.0),
                     DropdownButton<int>(
                       items: List.generate(
-                          200,
+                          300,
                           (index) => DropdownMenuItem<int>(
                                 value: index + 1,
                                 child: Text((index + 1).toString()),
@@ -384,6 +391,9 @@ List<Player> mainRecords = [];
                         controller: amountController,
                         onChanged: (txt) {
                           _.playersList[widget.index].addresses[widget.index].amount = int.parse(txt);
+                    
+                      
+
                           print(  _.playersList[widget.index].addresses[widget.index].amount);
                         },
                         keyboardType: TextInputType.number,
@@ -406,10 +416,18 @@ List<Player> mainRecords = [];
                       onTap: ()async{
                      
       // await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
-
+ double n = double.parse(amountController.text)    / double.parse(_.buyInController.text);
                          setState(() {
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: showvalue, amount:int.parse(amountController.text)  ));
-isGreen = true; isGreen = true;
+                            
+                  _.playersList[widget.index].amount  +=  int.parse(amountController.text)  ;
+                       showvalues =  n ;   
+                       print(showvalues);
+                
+                // double n =   _.playersList[widget.index].addresses[widget.index].amount /   _.playersList[widget.index].buyIn; 
+                // print(n);
+                // showvalues = n.toInt();
+                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn:double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text)  ));
+                        //  toggleBar(true);
                           print(isGreen);
                           print(data.addresses);
                       //  mainRecord.addresses[widget.index].addresses.add
@@ -426,11 +444,15 @@ isGreen = true; isGreen = true;
 
                     GestureDetector(
                       onTap: (){
+                         double n = double.parse(amountController.text)    / double.parse(_.buyInController.text);
+
                         setState(() {
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: showvalue, amount:int.parse(amountController.text) ));
+                            _.playersList[widget.index].amount  -=  int.parse(amountController.text)  ;
+                                showvalues =  n ;   
+                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text) ));
 
                           print(data.addresses);
-                          isGreen = false;
+                          // isGreen = false;
                           print(isGreen);
                       //  mainRecord.addresses[widget.index].addresses.add
                         });
