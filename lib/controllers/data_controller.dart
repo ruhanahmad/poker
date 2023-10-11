@@ -16,6 +16,10 @@ class DataController extends GetxController
    DocumentReference? ref;
     Map winner ={};
      Map losser = {};
+      
+      List finals = [];
+
+      List ave = [];
 
    
 

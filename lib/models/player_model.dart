@@ -16,8 +16,9 @@ class Player {
   int buyIn;
   int amount;
    List<PlayerCashInOut> addresses = [];
-   String finalAmount;
+   int finalAmount;
    String time;
+   int lastAmount;
 
   Player({
     required this.name,
@@ -26,6 +27,7 @@ class Player {
     required this.addresses,
     required this.finalAmount,
     required this.time,
+    required this.lastAmount
     
   });
 
@@ -37,7 +39,8 @@ class Player {
             .map((addrJson) => PlayerCashInOut.fromJson(addrJson))
             .toList(),
    finalAmount: json["finalAmount"]   ,
-   time:json["time"]      
+   time:json["time"] ,
+   lastAmount: json["lastAmount"]   
   );
 
   Map<String, dynamic> toJson() => {
@@ -46,7 +49,8 @@ class Player {
     "amount": amount,
       "addresses": List<dynamic>.from(addresses.map((x) => x.toJson())),
       "finalAmount":finalAmount,
-      "time":time
+      "time":time,
+      "lastAmount":lastAmount
   };
 }
 

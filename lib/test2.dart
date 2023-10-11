@@ -1,96 +1,141 @@
-// import 'package:flutter/material.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
-// void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Firestore Array Deletion',
-//       home: FirestoreArrayDeletion(),
-//     );
-//   }
-// }
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: PokerCalculatorScreen(),
+      ),
+    );
+  }
+}
 
-// class FirestoreArrayDeletion extends StatefulWidget {
-//   @override
-//   _FirestoreArrayDeletionState createState() => _FirestoreArrayDeletionState();
-// }
+class PokerCalculatorScreen extends StatefulWidget {
+  @override
+  _PokerCalculatorScreenState createState() => _PokerCalculatorScreenState();
+}
 
-// class _FirestoreArrayDeletionState extends State<FirestoreArrayDeletion> {
-//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-//   final TextEditingController _indexController = TextEditingController();
-//   List<dynamic> dataArray = [];
+class _PokerCalculatorScreenState extends State<PokerCalculatorScreen> {
+  bool isExpanded = false;
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     fetchDataFromFirestore();
-//   }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: null, // No app bar
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Your existing widgets go here...
 
-//   Future<void> fetchDataFromFirestore() async {
-//     try {
-//       DocumentSnapshot documentSnapshot =
-//           await _firestore.collection('your_collection_name').doc('your_document_id').get();
+            // Wrap the main and expandable containers in a parent container
+            Container(
+              width: 412,
+              height: isExpanded ? 243 : 60,
+              decoration: BoxDecoration(
+                color: Color(0xFF99A0BA),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("Name"),
+                      Text("Amount"),
+                      Text("Buyin"),
+                      Text("Net"),
+                    ],
+                  ),
+                  // Expandable container
+                  if (isExpanded)
+                    Container(
+                      height: 111,
+                      width: 396,
+                      color: Color(0xFF626D94),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text("Text 1"),
+                          Text("Text 2"),
+                          Text("Text 3"),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
 
-//       if (documentSnapshot.exists) {
-//         setState(() {
-//           dataArray = List.from(documentSnapshot.get('your_array_field_name'));
-//         });
-//       }
-//     } catch (e) {
-//       print('Error fetching data: $e');
-//     }
-//   }
+            // Row with two containers
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  width: 170,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF99A0BA),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Save",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'OpenSans',
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 170,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF99A0BA),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Share",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'OpenSans',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
 
-//   Future<void> deleteElementAtFirestore(int index) async {
-//     if (index >= 0 && index < dataArray.length) {
-//       dataArray.removeAt(index);
-
-//       try {
-//         await _firestore.collection('your_collection_name').doc('your_document_id').update({
-//           'your_array_field_name': dataArray,
-//         });
-//         print('Element at index $index deleted successfully.');
-//       } catch (e) {
-//         print('Error deleting element: $e');
-//       }
-//     } else {
-//       print('Invalid index');
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Firestore Array Deletion'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Text('Data Array: $dataArray'),
-//             TextFormField(
-//               controller: _indexController,
-//               decoration: InputDecoration(labelText: 'Index to Delete'),
-//             ),
-//             SizedBox(height: 20),
-//             RaisedButton(
-//               onPressed: () {
-//                 int index = int.tryParse(_indexController.text);
-//                 if (index != null) {
-//                   deleteElementAtFirestore(index);
-//                 } else {
-//                   print('Invalid index format');
-//                 }
-//               },
-//               child: Text('Delete Element at Index'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+            // Container with height 67
+            Container(
+              width: 281,
+              height: 67,
+              decoration: BoxDecoration(
+                color: Color(0xFFF0A637),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: Text(
+                  "Your Text Here",
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: 'OpenSans',
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

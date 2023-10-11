@@ -58,7 +58,7 @@ class ThirdScreen extends StatelessWidget {
                ElevatedButton(
           onPressed: () {
           
-              _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: [],finalAmount: "",time: ""));
+              _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: [],finalAmount: 0,time: "",lastAmount: 0));
               return;
             
 

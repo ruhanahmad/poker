@@ -21,35 +21,8 @@ class FinalSummary extends StatelessWidget {
 
 
 
- DataController _ = Get.find();
-    Future<void>? alerts(BuildContext context,int leng){
-    showDialog(context: context, builder: (context){
-      return     AlertDialog(
-        content: 
-         Column(
-           children: [
-             Container(
-              height: 300,
-              width: MediaQuery.of(context).size.width,
-                child: Obx(
-                  () => ListView.builder(
-                    itemCount: _.playersList.length,
-                    itemBuilder: ((context, index) {
-                      return 
-                      PlayerWidgets(
-                        index: index,
-                      );
-                    }),
-                  ),
-                ),
-              ),
-           
-                   
-           ],
-         ),
-      );
-    });
-  }
+
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -165,24 +138,74 @@ class FinalSummary extends StatelessWidget {
                 ),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  width: 170,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF626D94),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Save",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'OpenSans',
+                        color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 170,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF626D94),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Share",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'OpenSans',
+                        color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+SizedBox(height: 20,),
+            // Container with height 67
+            Container(
+              width: 281,
+              height: 67,
+              decoration: BoxDecoration(
+                color: Color(0xFFF0A637),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: Text(
+                  "Transactions",
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: 'OpenSans',
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 50,),
           ],
         ),
       ),
-      bottomNavigationBar: SafeArea(
-        child: ElevatedButton(
-          onPressed: () async{
-
-
-     await   alerts(context,_.playersList.length);
-              // _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: []));
-       
-            
-   
-          },
-          style: ElevatedButton.styleFrom(primary: const Color(0xFF7D37F0)),
-          child: const Text('Add'),
-        ),
-      ),
+     
     );
   }
 }
@@ -228,11 +251,11 @@ class _PlayerWidgetState extends State<PlayerWidget> {
       return 
       AnimatedContainer(
         duration: const Duration(milliseconds: 250),
-        height: isExpanded?size.width*.9: size.width * .1,
+        height: isExpanded?size.width*.5: size.width * .1,
         margin: const EdgeInsets.symmetric(vertical: 5.0),
         decoration: BoxDecoration(
-          color: const Color(0xff626D94),
-          borderRadius: BorderRadius.circular(10.0),
+          color: const Color(0xff99A0BA),
+          borderRadius: BorderRadius.circular(15.0),
         ),
         child: 
         Column(
@@ -266,33 +289,43 @@ class _PlayerWidgetState extends State<PlayerWidget> {
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
                       ),
-                        Text(
-                        data.finalAmount.toString(),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                    ],
-                  ),
-                ),
-                 Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.cyclone_outlined,color: Color(0xff97EEA5),),
-                      InkWell(
-                        onTap: (){
+                        GestureDetector(
+                          onTap: (){
+                             
                           isExpanded=!isExpanded;
                           setState(() {
                             
                           });
-                        },
-                        child: Icon(isExpanded?Icons.keyboard_arrow_up: Icons.keyboard_arrow_down,color: Color(0xff97EEA5),),),
-            
+                
+                          },
+                          child: Text(
+                          data.lastAmount.toString(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                                              ),
+                        ),
                     ],
                   ),
                 ),
+                //  Expanded(
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Icon(Icons.cyclone_outlined,color: Color(0xff97EEA5),),
+                //       InkWell(
+                //         onTap: (){
+                //           isExpanded=!isExpanded;
+                //           setState(() {
+                            
+                //           });
+                //         },
+                //         child: Icon(isExpanded?Icons.keyboard_arrow_up: Icons.keyboard_arrow_down,color: Color(0xff97EEA5),),),
+            
+                //     ],
+                //   ),
+                // ),
               ],
             ),
         if(isExpanded)
@@ -306,14 +339,14 @@ List<Player> mainRecords = [];
       amountController.text = data.amount.toString();
             return Column(children: [
               SizedBox(height: size.width*.0125,),
-              Divider(
-                thickness: 1,
-                color: Color(0xffB4B4B4),),
+              // Divider(
+              //   thickness: 1,
+              //   color: Color(0xffB4B4B4),),
             
        AnimatedContainer(
             duration: const Duration(microseconds: 250),
             margin: const EdgeInsets.symmetric(vertical: 5.0),
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(15.0),
             decoration: BoxDecoration(
               color: const Color(0xFF626D94),
               borderRadius: BorderRadius.circular(10.0),
@@ -321,135 +354,21 @@ List<Player> mainRecords = [];
             child: 
             Column(
               children: [
+
+
                 Padding(
                   
                   padding: const EdgeInsets.symmetric(horizontal:8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Text("Buy In",style: TextStyle(color: Color(0xffB4B4B4,),fontSize: 10),),
-                     Text("Custom Amount",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),),
-                      Text("Cash in",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),),
-                       Text("Cash out",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),)
+                    Text("Session Log",style: TextStyle(color: Color(0xffB4B4B4,),fontSize: 13),),
+                    
                 
                   ],),
                 ),
                 SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                 
-                    const SizedBox(width: 10.0),
-                    DropdownButton<int>(
-                      items: List.generate(
-                          200,
-                          (index) => DropdownMenuItem<int>(
-                                value: index + 1,
-                                child: Text((index + 1).toString()),
-                              )).toList(),
-                      onChanged: (value) {
-                        _.playersList[widget.index].buyIn = value!;
-                        _.playersList[widget.index].amount =
-                            value * int.parse(_.buyInController.text);
-                        amountController.text =
-                            (value * int.parse(_.buyInController.text)).toString();
-                        setState(() {
-                          showvalue = value;
-                          print(showvalue);
-                        });
-
-                        // fair ok ok ustad g
-                        // Implement logic to handle dropdown selection
-                      },
-                      underline: Container(),
-                      value: showvalue,
-                    ),
-                    const SizedBox(width: 10.0),
-                    Container(
-                      height: 30,
-                      width: 80,
-                      child: TextField(
-                        controller: amountController,
-                        onChanged: (txt) {
-                          _.playersList[widget.index].addresses[widget.index].amount = int.parse(txt);
-                          print(  _.playersList[widget.index].addresses[widget.index].amount);
-                        },
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(8.0),
-                          hintText: 'Amount',
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: size.width * .05,
-                    ),
-
-                    GestureDetector(
-                      onTap: ()async{
-                     
-      // await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
-
-                         setState(() {
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: showvalue.toDouble(), amount:int.parse(amountController.text)  ));
-isGreen = true; isGreen = true;
-                          print(isGreen);
-                          print(data.addresses);
-                      //  mainRecord.addresses[widget.index].addresses.add
-                        });
-                        //  _.playersList.add(PlayerList(amount:  _.playerCashInOut[widget.index].amount ,buyIn: _.playerCashInOut[widget.index].amount ,time: ""));
-
-                        //  print(_.playerCashInOut.length);
-                      },
-                      child: Container(height: 27,width: 32,decoration: BoxDecoration(color: Color(0xFF99A0BA),borderRadius: BorderRadius.circular(10)),child: Icon(Icons.add,color: Colors.green,),)),
-
-                     SizedBox(
-                      width: size.width * .05,
-                    ),
-
-                    GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: showvalue.toDouble(), amount:int.parse(amountController.text) ));
-
-                          print(data.addresses);
-                          isGreen = false;
-                          print(isGreen);
-                      //  mainRecord.addresses[widget.index].addresses.add
-                        });
-                      },
-                      
-                      child: Container(height: 27,width: 32,decoration: BoxDecoration(color: Color(0xFF99A0BA),borderRadius: BorderRadius.circular(10)),child: Icon(Icons.navigate_before,color: Colors.red,))),
-                   
-                  ],
-                ),
-          //         Expanded(
-          //   child: Obx(
-          //     () => ListView.builder(
-          //       itemCount: _.playerCashInOut.length,
-          //       itemBuilder: ((context, index) {
-          //         return 
-          //         // Container();
-          //         Container(
-          //           height: 100,
-          //           width: size.width,
-          //           child: Row(children: [
-          //           Text("${_.playerCashInOut[widget.index].amount}")
-          //         ],),);
-          //         // PlayerWidget(
-          //         //   index: index,
-          //         // );
-          //       }),
-          //     ),
-          //   ),
-          // ),
-
-    //        for (final addressRecord in  data.addresses)
+    
             Container(
               height: 120,
               width: MediaQuery.of(context).size.width,
@@ -459,27 +378,29 @@ isGreen = true; isGreen = true;
             return                    Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                            height: 55,
+                          
                             width: 397,
                           //  padding: EdgeInsets.all(8.0),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
+                              border: Border.all(color: Color(0xFF626D94)),
                               borderRadius: BorderRadius.circular(15),
-                              color: Color(0XFF99A0BA)
+                              color: Color(0XFF626D94)
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal:3.0),
                               child: Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                     Text('${data.addresses[i].time}',style: TextStyle(color: isGreen == true? Colors.green:Colors.red ),),
-                                  Text('${data.addresses[i].amount}'),
-                                  Text('${data.addresses[i].buyIn}'),
-                                  IconButton(onPressed: (){
-                                    setState(() {
-                                      data.addresses.removeAt(i);
-                                    });
-                                  }, icon:Icon( Icons.delete))
+                                  Row(
+                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                         Text('${data.addresses[i].time}',style: TextStyle(color: Colors.green, ),),
+                                      Text(' Cash in ${data.addresses[i].buyIn} Buy In  ${data.addresses[i].amount}',style: TextStyle(color: Colors.white),),
+                                      // Text('}'),
+                                      
+                                    ],
+                                  ),
+                                  // Text("${data.lastAmount}")
                                 ],
                               ),
                             ),
@@ -496,6 +417,7 @@ isGreen = true; isGreen = true;
             ],);
           }
         ),
+        
         
           ],
         ),

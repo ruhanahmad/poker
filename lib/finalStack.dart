@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poker/controllers/data_controller.dart';
 import 'package:poker/finalSummary.dart';
+import 'package:poker/finalSummarytwo.dart';
 import 'package:poker/newnew.dart';
 import 'package:poker/test.dart';
 import 'package:poker/webvioew.dart';
@@ -158,10 +159,11 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
                                     border: InputBorder.none,
                                   ),
                                   onChanged: (value){
-                                 _.playersList[index].finalAmount   =value;
+                                 _.playersList[index].finalAmount   =int.parse(value);
                                  _.playersList[index].time   =DateTime.now().toString();
+                               _.playersList[index].lastAmount=  _.playersList[index].finalAmount - _.playersList[index].amount;
                               
-                                 print(  _.playersList[index].finalAmount);
+                                 print(  _.playersList[index].lastAmount);
                               
                                   }
                                   ,
@@ -183,9 +185,10 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
           GestureDetector(
             onTap: (){
          setState(() {
+          
             //  _.playersList[widget.index].amount  -=  int.parse(amountController.text)  ;
          });
-                  Get.to(()=> WebViewExample());
+                  Get.to(()=> FinalSummary());
               // Get.to(()=>FinalSummary());
             },
             child: Text("data")),
@@ -198,18 +201,101 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
               
                 _.winner[i.name] = i.amount;
 
-                print(_.winner);
+
+
+               
             }
-            else {
+            if(i.amount <0){
        
                  _.losser[i.name] = i.amount;
 
-                print("Loser" + "${_.losser}");
-
-
+            
 
             }
+
            }
+           print(_.playersList.length);
+               print("Loser" + "${_.losser}");
+            print("Winner" + "${_.winner}");
+          int count = 0;
+          String name = "";
+          int amounts = 0;
+          
+          _.winner.forEach((winnerName, winnerAmount) {
+                   if(name != "" ){
+                    _.losser[name] = amounts;
+                    _.update();
+                   }
+              _.losser.forEach((losserName, losserAmount) {
+
+
+                  print(winnerAmount);
+                  print(losserAmount.abs());
+           print(winnerAmount > losserAmount.abs());
+           print(winnerAmount < losserAmount.abs());
+   if(!_.ave.contains(losserName)){
+if(winnerAmount >   losserAmount.abs()){
+
+  _.finals.add(
+    {"winnerName":winnerName,"losserName":losserName,"Amount":losserAmount.abs()},
+
+    
+    );
+    _.update();
+
+  count = winnerAmount - losserAmount.abs();
+  
+  //  _.losser.remove(losserName);
+     _.ave.add(losserName);
+     _.update();
+        
+}
+
+if(winnerAmount < losserAmount.abs()) {
+ if(count != 0 ) {
+  winnerAmount = count;
+  count = 0;
+ }
+
+_.finals.add(
+    {"winnerName":winnerName,"losserName":losserName,"Amount":winnerAmount},
+
+    
+    );
+    _.update();
+name = losserName;
+amounts = losserAmount.abs() - winnerAmount;
+print("ASDASd" + "${amounts}");
+
+
+}
+
+if(winnerAmount == losserAmount.abs()) {
+ 
+
+_.finals.add(
+    {"winnerName":winnerName,"losserName":losserName,"Amount":losserAmount.abs()},
+
+    
+    );
+   
+_.ave.add(losserName);
+
+}
+   }                
+
+
+
+              }
+              
+              
+              );
+             
+
+                      
+              // print(_.losser);
+          });
+               print(_.finals);
               // Get.to(()=>FinalSummary());
             },
             child: Text("Function"))

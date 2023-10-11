@@ -163,7 +163,7 @@ class SecondScreen extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             if (_.playersList.length < _.maxPlayers.value) {
-              _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: [],finalAmount: "",time:""));
+              _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: [],finalAmount: 0,time:"",lastAmount: 0));
               return;
             }
             Get.closeAllSnackbars();
