@@ -20,6 +20,7 @@ class DataController extends GetxController
       List finals = [];
 
       List ave = [];
+      List aveTwo = [];
 
    
 

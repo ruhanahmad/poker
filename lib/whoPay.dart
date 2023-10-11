@@ -5,20 +5,11 @@ import 'package:get/get.dart';
 import 'package:poker/finalStack.dart';
 
 import 'package:poker/models/player_model.dart';
-import 'package:poker/whoPay.dart';
 
 import 'controllers/data_controller.dart';
 
-class FinalSummary extends StatelessWidget {
-  List<Container> buyInsList = [];
+class WhoPay extends StatelessWidget {
 
-
-
-
-
-
-
-  int n = 0;
 
 
 
@@ -58,7 +49,7 @@ class FinalSummary extends StatelessWidget {
         height: size.height,
         child: Column(
           children: [
-            Text("Final Summary",
+            Text("${_.gameNameController.text}",
                 style: const TextStyle(  fontSize: 40.0,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)),
@@ -76,19 +67,15 @@ class FinalSummary extends StatelessWidget {
                           style: const TextStyle(
                             color: Colors.grey,
                           )),
-                      Row(
-                        children: [
-                          const Text('Buy In: ',
-                              style: TextStyle(
-                                color: Colors.grey,
-                              )),
-                          // Replace '120' with the actual buy-in value from the previous screen
-                          Text(_.buyInController.text,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                              )),
-                        ],
-                      ),
+                      Text('Game Time: ',
+                          style: TextStyle(
+                            color: Colors.grey,
+                          )),
+                      // Replace '120' with the actual buy-in value from the previous screen
+                      Text("00:00:00",
+                          style: const TextStyle(
+                            color: Colors.grey,
+                          )),
                     ],
                   ),
                 ),
@@ -104,291 +91,74 @@ class FinalSummary extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 50.0),
                 child: Row(
                   children: [
-                    Text('Players', style: TextStyle(fontSize: 15,fontFamily: 'Open Sans',
+                    Text('Who do I Pay?', style: TextStyle(fontSize: 20,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)),
-                    Spacer(),
-                    Text('Buy Ins',
-                        style: TextStyle(fontSize: 15,fontFamily: 'Open Sans',
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,)),
-                    Spacer(),
-                    Text('Buy Out ',
-                        style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,)),
-
-                          Spacer(),
-                    Text('Net',
-                        style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,)),
+                  
                   ],
                 ),
               ),
             ),
-            Expanded(
-              child: Obx(
-                () => ListView.builder(
-                  itemCount: _.playersList.length,
-                  itemBuilder: ((context, index) {
-                    return PlayerWidget(
-                      index: index,
-                    );
-                  }),
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  width: 170,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF626D94),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Save",
-                      style: TextStyle(
-                        fontSize: 15,
+            // Expanded(
+            //   child: Obx(
+            //     () => 
+            //     ListView.builder(
+            //       itemCount: _.playersList.length,
+            //       itemBuilder: ((context, index) {
+            //         return PlayerWidget(
+            //           index: index,
+            //         );
+            //       }),
+            //     ),
+            //   ),
+        //     // ),
+        //  Text("${_.finals}"),
+        SizedBox(height: 70,),
+        Center(
+          child: Container(height: 400,width: MediaQuery.of(context).size.width,
+          
+          child: ListView.builder(
+                    itemCount: _.finals.length,
+                    itemBuilder: ((context, index) {
+                      return
+                  Container(child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      
+                      children: [
+                     Text(_.finals[index]["losserName"],style: TextStyle(fontSize: 20,
                         fontWeight: FontWeight.w800,
                         fontFamily: 'OpenSans',
-                        color: Colors.white
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 170,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF626D94),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Share",
-                      style: TextStyle(
-                        fontSize: 15,
+                        color: Colors.white,),),
+                        SizedBox(width: 40,),
+                           Text(_.finals[index]["Amount"].toString(),style: TextStyle(fontSize: 25,
                         fontWeight: FontWeight.w800,
                         fontFamily: 'OpenSans',
-                        color: Colors.white
-                      ),
-                    ),
+                        color: Colors.white,),),
+                         SizedBox(width: 40,),
+                       Text(_.finals[index]["winnerName"],style: TextStyle(fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'OpenSans',
+                        color: Colors.white,),),
+                        
+                          
+                    ],),
+                  ),);  
+                   
+                    
+                    }),
                   ),
-                ),
-              ],
-            ),
+          ),
+        ),
 SizedBox(height: 20,),
 
-             GestureDetector(
-            
-            child: Text("Function")),
+          
             // Container with height 67
             GestureDetector(
              onTap: (){
-                 _.ave.clear();
-    _.aveTwo.clear();
-    // count = 0;
-    // name = "";
-    _.winner.clear();
-    _.losser.clear();
-    _.finals.clear();
-           for (var i in _.playersList){
-            if(i.lastAmount > 0  ){
-              
-                _.winner[i.name] = i.lastAmount;
-
-
-
-               
-            }
-            if(i.lastAmount <0){
-       
-                 _.losser[i.name] = i.lastAmount;
-
-            
-
-            }
-
-           }
-           print(_.playersList.length);
-               print("Loser" + "${_.losser}");
-            print("Winner" + "${_.winner}");
-          int count = 0;
-          String name = "";
-          int amounts = 0;
-
-    for (var winnerEntry in _.winner.entries) {
-  var winnerName = winnerEntry.key;
-  var winnerAmount = winnerEntry.value;
-
-  if (name != "") {
-    _.losser[name] = amounts;
-    amounts =0;
-    name = "";
-    _.update();
-  }
-  
-  print("|" + "${_.aveTwo}");
-  print("dasdasd" + "${!_.aveTwo.contains(winnerName)}");
-
-  print("winnerrrrrrrrrrrrrrrrrrr" + "${winnerName}");
-
- if (!_.aveTwo.contains(winnerName)) {
-    for (var losserEntry in _.losser.entries) {
-      var losserName = losserEntry.key;
-      var losserAmount = losserEntry.value;
-
-      print(winnerAmount);
-      print(losserAmount.abs());
  
-  print("cvconet" + "${!_.ave.contains(losserName) && !_.aveTwo.contains(winnerName)}");
-      if (!_.ave.contains(losserName) && !_.aveTwo.contains(winnerName)) {
-      
-        if (winnerAmount > losserAmount.abs()) {
-          _.finals.add({
-            "winnerName": winnerName,
-            "losserName": losserName,
-            "Amount": losserAmount.abs(),
-          });
-          _.update();
-
-          count = winnerAmount - losserAmount.abs();
-          _.ave.add(losserName);
-          _.update();
-        }
-
-        if (winnerAmount < losserAmount.abs()) {
-          if (count != 0) {
-            winnerAmount = count;
-            count = 0;
-          }
-
-          _.finals.add({
-            "winnerName": winnerName,
-            "losserName": losserName,
-            "Amount": winnerAmount,
-          });
-
-          _.update();
-          name = losserName;
-          amounts = losserAmount.abs() - winnerAmount;
-          print("ASDASd" + "${amounts}");
-          _.aveTwo.add(winnerName);
- 
-        }
-
-        if (winnerAmount == losserAmount.abs()) {
-          _.finals.add({
-            "winnerName": winnerName,
-            "losserName": losserName,
-            "Amount": losserAmount.abs(),
-          });
-
-          _.ave.add(losserName);
-          _.aveTwo.add(winnerName);
-  
-        }
-      }
-    }
-  }
-}
-
-
-
-        
-          
-//           _.winner.forEach((winnerName, winnerAmount) {
-//                    if(name != "" ){
-//                     _.losser[name] = amounts;
-//                     _.update();
-//                    }
-
-//                    if(!_.aveTwo.contains(winnerName)) {
-// _.losser.forEach((losserName, losserAmount) {
-
-
-//                   print(winnerAmount);
-//                   print(losserAmount.abs());
-//            print(winnerAmount > losserAmount.abs());
-//            print(winnerAmount < losserAmount.abs());
-//    if(!_.ave.contains(losserName)){
-// if(winnerAmount >   losserAmount.abs()){
-
-//   _.finals.add(
-//     {"winnerName":winnerName,"losserName":losserName,"Amount":losserAmount.abs()},
-
-    
-//     );
-//     _.update();
-
-//   count = winnerAmount - losserAmount.abs();
-  
-//   //  _.losser.remove(losserName);
-//      _.ave.add(losserName);
-//      _.update();
-        
-// }
-
-// if(winnerAmount < losserAmount.abs()) {
-//  if(count != 0 ) {
-//   winnerAmount = count;
-//   count = 0;
-//  }
-
-// _.finals.add(
-//     {"winnerName":winnerName,"losserName":losserName,"Amount":winnerAmount},
-
-    
-//     );
-
-
-//     _.update();
-// name = losserName;
-// amounts = losserAmount.abs() - winnerAmount;
-// print("ASDASd" + "${amounts}");
-// _.aveTwo.add(winnerName);
-
-
-// }
-
-
-// if(winnerAmount == losserAmount.abs()) {
- 
-
-// _.finals.add(
-//     {"winnerName":winnerName,"losserName":losserName,"Amount":losserAmount.abs()},
-
-    
-//     );
-   
-// _.ave.add(losserName);
-// _.aveTwo.add(winnerName);
-
-// }
-//    }                
-
-
-
-//               }
-              
-              
-//               );
-//                    }
-              
-             
-
-                      
-//               // print(_.losser);
-//           });
- 
-
-               print(_.finals);
-             Get.to(()=>WhoPay());
+              // Get.to(()=>FinalSummary());
             },
               child: Container(
                 width: 281,
@@ -399,7 +169,7 @@ SizedBox(height: 20,),
                 ),
                 child: Center(
                   child: Text(
-                    "Transactions",
+                    "Share",
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,

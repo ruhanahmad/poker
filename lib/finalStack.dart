@@ -182,16 +182,6 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
               },
             ),
           ),
-          GestureDetector(
-            onTap: (){
-         setState(() {
-          
-            //  _.playersList[widget.index].amount  -=  int.parse(amountController.text)  ;
-         });
-                  Get.to(()=> FinalSummary());
-              // Get.to(()=>FinalSummary());
-            },
-            child: Text("data")),
 
 
              GestureDetector(
@@ -298,7 +288,32 @@ _.ave.add(losserName);
                print(_.finals);
               // Get.to(()=>FinalSummary());
             },
-            child: Text("Function"))
+            child: Text("Function")),
+ GestureDetector(
+              onTap: (){
+                   Get.to(()=> FinalSummary());
+              },
+              child: Container(
+                width: 281,
+                height: 67,
+                decoration: BoxDecoration(
+                  color: Color(0xFFF0A637),
+                  borderRadius: BorderRadius.circular(200),
+                ),
+                child: Center(
+                  child: Text(
+                    "Confirm",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      fontFamily: 'OpenSans',
+                      color: Colors.white
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
         ],
       ),
     );
