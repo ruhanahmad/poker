@@ -50,7 +50,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   _.nn =  userCredential.user!.uid;
                   _.update();
                 //  await FirebaseFirestore.instance.collection("users").doc(userCredential.user!.uid).collection("games").add({});
-                  print('Signed in: ${userCredential.user!.email}');
+                 
                 //  final users =await FirebaseFirestore.instance.collection("users").doc(userCredential.user!.uid);
 //                   _.playersList.map((player)async {
 // final playerlistss ={

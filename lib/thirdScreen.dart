@@ -573,8 +573,8 @@ int showvalue =1;
       nameController.text = data.name;
       amountController.text = data.amount.toString();
       return Container(
-        margin: const EdgeInsets.symmetric(vertical: 5.0),
-        padding: const EdgeInsets.all(10.0),
+        // margin: const EdgeInsets.symmetric(vertical: 5.0),
+        // padding: const EdgeInsets.all(5.0),
         decoration: BoxDecoration(
           color: const Color(0xFF626D94),
           borderRadius: BorderRadius.circular(10.0),

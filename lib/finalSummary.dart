@@ -142,21 +142,64 @@ class FinalSummary extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  width: 170,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF626D94),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Save",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: 'OpenSans',
-                        color: Colors.white
+                GestureDetector(
+                  onTap: ()async {
+                   
+                   _.ref = await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").add({"gameNamw":_.gameNameController.text});
+             _.update();
+
+                               final usersTwow =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
+                      
+                for (var player in _.playersList){
+
+                  final playerlists = {
+                  "name":player.name ,
+                  "buyin":player.buyIn,
+                  "amount":player.amount,
+                  "address":player.addresses.map((addr) => addr.toJson()).toList(),
+                  "finalStack":player.finalAmount,
+                  "gameName":_.gameNameController.text,
+                  "lastAmount":player.lastAmount,
+
+          
+
+                  };
+
+
+
+
+
+await  usersTwow.add(playerlists);
+                }
+
+                final whoPays =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("WhoPaysWho");
+ for (var player in _.finals){
+
+
+
+
+
+
+await  whoPays.add(player);
+                }
+
+                  },
+                  child: Container(
+                    width: 170,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF626D94),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Save",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: 'OpenSans',
+                          color: Colors.white
+                        ),
                       ),
                     ),
                   ),

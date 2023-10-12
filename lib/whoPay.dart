@@ -67,15 +67,20 @@ class WhoPay extends StatelessWidget {
                           style: const TextStyle(
                             color: Colors.grey,
                           )),
-                      Text('Game Time: ',
-                          style: TextStyle(
-                            color: Colors.grey,
-                          )),
-                      // Replace '120' with the actual buy-in value from the previous screen
-                      Text("00:00:00",
+                      Row(
+                        children: [
+                          Text('Game Time: ',
+                              style: TextStyle(
+                                color: Colors.grey,
+                              )),
+                                Text("00:00:00",
                           style: const TextStyle(
                             color: Colors.grey,
                           )),
+                        ],
+                      ),
+                      // Replace '120' with the actual buy-in value from the previous screen
+                    
                     ],
                   ),
                 ),
@@ -87,16 +92,16 @@ class WhoPay extends StatelessWidget {
             Container(
               height: 40,
               color: const Color(0xFF626D94),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50.0),
-                child: Row(
-                  children: [
-                    Text('Who do I Pay?', style: TextStyle(fontSize: 20,fontFamily: 'Open Sans',
+              child:  Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Text('Who do I Pay?', style: TextStyle(fontSize: 20,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
-                        color: Colors.white,)),
-                  
-                  ],
-                ),
+                        color: Color(0xFF97EEA5),)),
+                  ),
+                
+                ],
               ),
             ),
             // Expanded(
@@ -132,11 +137,17 @@ class WhoPay extends StatelessWidget {
                         fontFamily: 'OpenSans',
                         color: Colors.white,),),
                         SizedBox(width: 40,),
-                           Text(_.finals[index]["Amount"].toString(),style: TextStyle(fontSize: 25,
+                        Column(
+                          children: [
+                             Text(_.finals[index]["Amount"].toString(),style: TextStyle(fontSize: 25,
                         fontWeight: FontWeight.w800,
                         fontFamily: 'OpenSans',
                         color: Colors.white,),),
-                         SizedBox(width: 40,),
+                   
+                            Container(height: 50,width:100,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/arrows.png"))),),
+                          ],
+                        ),
+                          SizedBox(width: 40,),
                        Text(_.finals[index]["winnerName"],style: TextStyle(fontSize: 20,
                         fontWeight: FontWeight.w800,
                         fontFamily: 'OpenSans',
