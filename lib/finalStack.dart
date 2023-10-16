@@ -327,7 +327,35 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
               child: Text("Function")),
      GestureDetector(
                 onTap: (){
-                     Get.to(()=> FinalSummary());
+                  _.winnerCount = 0;
+                  _.losserCount = 0;
+           for (var i in _.playersList){
+            if(i.lastAmount > 0  ){
+              
+                _.winnerCount += i.lastAmount;
+
+
+
+               
+            }
+            if(i.lastAmount <0){
+       
+                 _.losserCount += i.lastAmount;
+
+            
+
+            }
+
+           }
+           print(_.winnerCount);
+           print(_.losserCount);
+                  if(_.winnerCount == _.losserCount.abs()) {
+       Get.to(()=> FinalSummary());
+                  }
+                  else{
+                    Get.snackbar("Error", "Not Equal");
+                  }
+             
                 },
                 child: Container(
                   width: 281,

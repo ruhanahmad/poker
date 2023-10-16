@@ -22,7 +22,8 @@ class DataController extends GetxController
       List ave = [];
       List aveTwo = [];
 
-   
+     int winnerCount = 0;
+     int losserCount = 0;
 
   var nn;
 
