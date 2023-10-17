@@ -349,12 +349,12 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
            }
            print(_.winnerCount);
            print(_.losserCount);
-                  if(_.winnerCount == _.losserCount.abs()) {
+                //  if(_.winnerCount == _.losserCount.abs()) {
        Get.to(()=> FinalSummary());
-                  }
-                  else{
-                    Get.snackbar("Error", "Not Equal");
-                  }
+                 // }
+                 // else{
+                //    Get.snackbar("Error", "Not Equal");
+                //  }
              
                 },
                 child: Container(

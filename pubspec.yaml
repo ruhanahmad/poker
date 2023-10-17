@@ -70,6 +70,7 @@ flutter:
      - asset/images/arrows.png
      - asset/images/back.png
      - asset/images/casino.png
+     - asset/images/right.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

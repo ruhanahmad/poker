@@ -1,8 +1,11 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poker/finalStack.dart';
+import 'package:poker/history.dart';
 
 import 'package:poker/models/player_model.dart';
 import 'package:poker/whoPay.dart';
@@ -226,10 +229,33 @@ await  whoPays.add(player);
               ],
             ),
 SizedBox(height: 20,),
-
+ GestureDetector(
+  onTap: () {
+     Get.to(()=>History());
+  },
+   child: Container(
+                    width: 170,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF626D94),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "History",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: 'OpenSans',
+                          color: Colors.white
+                        ),
+                      ),
+                    ),
+                  ),
+ ),
              GestureDetector(
             
-            child: Text("Function")),
+            child: Text("")),
             // Container with height 67
             GestureDetector(
              onTap: (){
