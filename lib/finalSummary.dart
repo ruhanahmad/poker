@@ -1,5 +1,7 @@
 
 
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -8,46 +10,60 @@ import 'package:poker/finalStack.dart';
 import 'package:poker/history.dart';
 
 import 'package:poker/models/player_model.dart';
+import 'package:poker/test2.dart';
 import 'package:poker/whoPay.dart';
+import 'package:screenshot/screenshot.dart';
 
 import 'controllers/data_controller.dart';
 
-class FinalSummary extends StatelessWidget {
+class FinalSummary extends StatefulWidget {
+  @override
+  State<FinalSummary> createState() => _FinalSummaryState();
+}
+
+class _FinalSummaryState extends State<FinalSummary> {
   List<Container> buyInsList = [];
-
-
-
-
-
-
 
   int n = 0;
 
+  ScreenshotController screenshotController = ScreenshotController();
 
-
-
+  Uint8List? _imageFile;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+Future<dynamic> ShowCapturedWidget(
+      BuildContext context, Uint8List capturedImage) {
+    return showDialog(
+      useSafeArea: false,
+      context: context,
+      builder: (context) => Scaffold(
+        appBar: AppBar(
+          title: Text("Captured widget screenshot"),
+        ),
+        body: Center(child: Image.memory(capturedImage)),
+      ),
+    );
+  }
     DataController _ = Get.find();
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            const Text('Back', style: TextStyle(color: Colors.white)),
-            const Spacer(),
-            TextButton.icon(
-              onPressed: () {
-              Get.to(()=>ContainerSelectionScreen())  ;
+        // title: 
+        // Row(
+        //   children: [
+        //     const Text('Back', style: TextStyle(color: Colors.white)),
+        //     const Spacer(),
+        //     TextButton.icon(
+        //       onPressed: () {
+        //       Get.to(()=>ContainerSelectionScreen())  ;
      
-              },
-              icon: const Icon(Icons.arrow_forward, color: Colors.white),
-              label: const Text('Start'),
-            ),
-          ],
-        ),
+        //       },
+        //       icon: const Icon(Icons.arrow_forward, color: Colors.white),
+        //       label: const Text('Start'),
+        //     ),
+        //   ],
+        // ),
         backgroundColor: const Color(0xFF505771),
         elevation: 0, // No shadow under the app bar
       ),
@@ -132,133 +148,198 @@ class FinalSummary extends StatelessWidget {
             ),
             Expanded(
               child: Obx(
-                () => ListView.builder(
-                  itemCount: _.playersList.length,
-                  itemBuilder: ((context, index) {
-                    return PlayerWidget(
-                      index: index,
-                    );
-                  }),
+                () => Screenshot(
+                  controller: screenshotController,
+                  child: ListView.builder(
+                    itemCount: _.playersList.length,
+                    itemBuilder: ((context, index) {
+                      return PlayerWidget(
+                        index: index,
+                      );
+                    }),
+                  ),
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  onTap: ()async {
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               children: [
+//                 GestureDetector(
+//                   onTap: ()async {
                    
-                   _.ref = await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").add({"gameNamw":_.gameNameController.text});
-             _.update();
+//                    _.ref = await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").add({"gameNamw":_.gameNameController.text});
+//              _.update();
 
-                               final usersTwow =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
+//                                final usersTwow =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
                       
-                for (var player in _.playersList){
+//                 for (var player in _.playersList){
 
-                  final playerlists = {
-                  "name":player.name ,
-                  "buyin":player.buyIn,
-                  "amount":player.amount,
-                  "address":player.addresses.map((addr) => addr.toJson()).toList(),
-                  "finalStack":player.finalAmount,
-                  "gameName":_.gameNameController.text,
-                  "lastAmount":player.lastAmount,
+//                   final playerlists = {
+//                   "name":player.name ,
+//                   "buyin":player.buyIn,
+//                   "amount":player.amount,
+//                   "address":player.addresses.map((addr) => addr.toJson()).toList(),
+//                   "finalStack":player.finalAmount,
+//                   "gameName":_.gameNameController.text,
+//                   "lastAmount":player.lastAmount,
 
           
 
-                  };
+//                   };
 
 
 
 
 
-await  usersTwow.add(playerlists);
-                }
+// await  usersTwow.add(playerlists);
+//                 }
 
-                final whoPays =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("WhoPaysWho");
- for (var player in _.finals){
-
-
+//                 final whoPays =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("WhoPaysWho");
+//  for (var player in _.finals){
 
 
 
 
-await  whoPays.add(player);
-                }
 
-                  },
-                  child: Container(
-                    width: 170,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF626D94),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Save",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: 'OpenSans',
-                          color: Colors.white
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 170,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF626D94),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Share",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: 'OpenSans',
-                        color: Colors.white
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+
+// await  whoPays.add(player);
+//                 }
+
+//                   },
+//                   child: Container(
+//                     width: 170,
+//                     height: 55,
+//                     decoration: BoxDecoration(
+//                       color: Color(0xFF626D94),
+//                       borderRadius: BorderRadius.circular(15),
+//                     ),
+//                     child: Center(
+//                       child: Text(
+//                         "Save",
+//                         style: TextStyle(
+//                           fontSize: 15,
+//                           fontWeight: FontWeight.w800,
+//                           fontFamily: 'OpenSans',
+//                           color: Colors.white
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 Container(
+//                   width: 170,
+//                   height: 55,
+//                   decoration: BoxDecoration(
+//                     color: Color(0xFF626D94),
+//                     borderRadius: BorderRadius.circular(15),
+//                   ),
+//                   child: Center(
+//                     child: Text(
+//                       "Share",
+//                       style: TextStyle(
+//                         fontSize: 15,
+//                         fontWeight: FontWeight.w800,
+//                         fontFamily: 'OpenSans',
+//                         color: Colors.white
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+
+
+//  ElevatedButton(
+//               child: Text(
+//                 'Capture Above Widget',
+//               ),
+//               onPressed: () {
+//                 screenshotController
+//                     .capture(delay: Duration(milliseconds: 10))
+//                     .then((capturedImage) async {
+
+//                         ShowCapturedWidget(context,  capturedImage!);
+//                 setState(() {
+//                    _imageFile = capturedImage; 
+//                 });
+                 
+
+//                 }).catchError((onError) {
+//                   print(onError);
+//                 });
+//               },
+          //  ),
 SizedBox(height: 20,),
- GestureDetector(
-  onTap: () {
-     Get.to(()=>History());
-  },
-   child: Container(
-                    width: 170,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF626D94),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "History",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: 'OpenSans',
-                          color: Colors.white
-                        ),
-                      ),
-                    ),
-                  ),
- ),
+//  Row(
+//    children: [
+//      GestureDetector(
+//       onTap: () {
+//          screenshotController
+//                     .capture(delay: Duration(milliseconds: 10))
+//                     .then((capturedImage) async {
+
+//                         ShowCapturedWidget(context,  capturedImage!);
+//                 setState(() {
+//                    _imageFile = capturedImage; 
+//                 });
+                 
+
+//                 }).catchError((onError) {
+//                   print(onError);
+//                 });
+//       },
+//        child: Container(
+//                         width: 170,
+//                         height: 55,
+//                         decoration: BoxDecoration(
+//                           color: Color(0xFF626D94),
+//                           borderRadius: BorderRadius.circular(15),
+//                         ),
+//                         child: Center(
+//                           child: Text(
+//                             "History",
+//                             style: TextStyle(
+//                               fontSize: 15,
+//                               fontWeight: FontWeight.w800,
+//                               fontFamily: 'OpenSans',
+//                               color: Colors.white
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//      ),
+//      GestureDetector(
+//       onTap: () {
+//          Get.to(()=>History());
+//       },
+//        child: Container(
+//                         width: 170,
+//                         height: 55,
+//                         decoration: BoxDecoration(
+//                           color: Color(0xFF626D94),
+//                           borderRadius: BorderRadius.circular(15),
+//                         ),
+//                         child: Center(
+//                           child: Text(
+//                             "History",
+//                             style: TextStyle(
+//                               fontSize: 15,
+//                               fontWeight: FontWeight.w800,
+//                               fontFamily: 'OpenSans',
+//                               color: Colors.white
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//      ),
+//    ],
+//  ),
              GestureDetector(
             
             child: Text("")),
             // Container with height 67
             GestureDetector(
-             onTap: (){
+             onTap: () async{
                  _.ave.clear();
     _.aveTwo.clear();
     // count = 0;
@@ -455,9 +536,22 @@ SizedBox(height: 20,),
 //               // print(_.losser);
 //           });
  
+await screenshotController
+                    .capture()
+                    .then((capturedImage) async {
 
+                       // ShowCapturedWidget(context,  capturedImage!);
+                setState(() {
+                   _imageFile = capturedImage; 
+                });
+                 
+
+                }).catchError((onError) {
+                  print(onError);
+                });
                print(_.finals);
-             Get.to(()=>WhoPay());
+                print(_imageFile); 
+             Get.to(()=>WhoPay(image:_imageFile));
             },
               child: Container(
                 width: 281,
@@ -479,6 +573,7 @@ SizedBox(height: 20,),
                 ),
               ),
             ),
+            
             SizedBox(height: 50,),
           ],
         ),
@@ -528,8 +623,8 @@ class _PlayerWidgetState extends State<PlayerWidget> {
 
       return 
       AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        height: isExpanded?size.width*.5: size.width * .1,
+        duration: const Duration(milliseconds: 150),
+        height: isExpanded?size.width*.6: size.width * .1,
         margin: const EdgeInsets.symmetric(vertical: 5.0),
         decoration: BoxDecoration(
           color: const Color(0xff99A0BA),
@@ -616,82 +711,88 @@ List<Player> mainRecords = [];
       nameController.text = data.name;
       amountController.text = data.amount.toString();
             return Column(children: [
-              SizedBox(height: size.width*.0125,),
+             // SizedBox(height: size.width*.0125,),
               // Divider(
               //   thickness: 1,
               //   color: Color(0xffB4B4B4),),
             
-       AnimatedContainer(
-            duration: const Duration(microseconds: 250),
-            margin: const EdgeInsets.symmetric(vertical: 5.0),
-            padding: const EdgeInsets.all(15.0),
-            decoration: BoxDecoration(
-              color: const Color(0xFF626D94),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: 
-            Column(
-              children: [
-
-
-                Padding(
-                  
-                  padding: const EdgeInsets.symmetric(horizontal:8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                    Text("Session Log",style: TextStyle(color: Color(0xffB4B4B4,),fontSize: 13),),
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: AnimatedContainer(
+                             duration: const Duration(microseconds: 250),
+                             margin: const EdgeInsets.symmetric(vertical: 5.0),
+                             padding: const EdgeInsets.all(15.0),
+                             decoration: BoxDecoration(
+                               color: const Color(0xFF626D94),
+                               borderRadius: BorderRadius.circular(10.0),
+                             ),
+                            //  height: 200,
+                             width: MediaQuery.of(context).size.width,
+                             child: 
+                             Column(
+                               children: [
+                             
+                             
+                                 Padding(
                     
-                
-                  ],),
-                ),
-                SizedBox(height: 10,),
-    
-            Container(
-              height: 120,
-              width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                itemCount: data.addresses.length,
-                itemBuilder:(context,i){
-            return                    Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                          
-                            width: 397,
-                          //  padding: EdgeInsets.all(8.0),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xFF626D94)),
-                              borderRadius: BorderRadius.circular(15),
-                              color: Color(0XFF626D94)
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal:3.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                         Text('${data.addresses[i].time}',style: TextStyle(color: Colors.green, ),),
-                                      Text(' Cash in ${data.addresses[i].buyIn} Buy In  ${data.addresses[i].amount}',style: TextStyle(color: Colors.white),),
-                                      // Text('}'),
-                                      
-                                    ],
-                                  ),
-                                  // Text("${data.lastAmount}")
-                                ],
+                    padding: const EdgeInsets.symmetric(horizontal:8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                      Text("Session Log",style: TextStyle(color: Color(0xffB4B4B4,),fontSize: 13),),
+                      
+                                 
+                    ],),
+                                 ),
+                                 SizedBox(height: 10,),
+                               
+                             Container(
+                               height: 120,
+                               width: MediaQuery.of(context).size.width,
+                               child: ListView.builder(
+                                 itemCount: data.addresses.length,
+                                 scrollDirection: Axis.vertical,
+                                 itemBuilder:(context,i){
+                             return                    Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                            
+                              width: 397,
+                            //  padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Color(0xFF626D94)),
+                                borderRadius: BorderRadius.circular(15),
+                                color: Color(0XFF626D94)
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal:3.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                           Text('${data.addresses[i].time}',style: TextStyle(color: Colors.white, ),),
+                                        Text(' Cash in ${data.addresses[i].buyIn} Buy In  ${data.addresses[i].amount}',style: TextStyle(color: Colors.white),),
+                                        // Text('}'),
+                                        
+                                      ],
+                                    ),
+                                    // Text("${data.lastAmount}")
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-            
-                }),
-            )
-   
-
-              ],
-            ),
-      )
+                          );
+                             
+                                 }),
+                             )
+                              
+                             
+                               ],
+                             ),
+                                 ),
+                 )
             ],);
           }
         ),

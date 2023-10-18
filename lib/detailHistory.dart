@@ -32,20 +32,20 @@ class _HistoryDetailState extends State<HistoryDetail> {
     DataController _ = Get.find();
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            const Text('Back', style: TextStyle(color: Colors.white)),
-            const Spacer(),
-            TextButton.icon(
-              onPressed: () {
-              Get.to(()=>ContainerSelectionScreen())  ;
+        // title: Row(
+        //   children: [
+        //     const Text('Back', style: TextStyle(color: Colors.white)),
+        //     const Spacer(),
+        //     TextButton.icon(
+        //       onPressed: () {
+        //       Get.to(()=>ContainerSelectionScreen())  ;
      
-              },
-              icon: const Icon(Icons.arrow_forward, color: Colors.white),
-              label: const Text('Start'),
-            ),
-          ],
-        ),
+        //       },
+        //       icon: const Icon(Icons.arrow_forward, color: Colors.white),
+        //       label: const Text('Start'),
+        //     ),
+        //   ],
+        // ),
         backgroundColor: const Color(0xFF505771),
         elevation: 0, // No shadow under the app bar
       ),

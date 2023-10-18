@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 Player playerFromJson(String str) => Player.fromJson(json.decode(str));
 
 String playerToJson(Player data) => json.encode(data.toJson());
@@ -65,6 +67,8 @@ class PlayerCashInOut {
     String time;
     double buyIn;
     int amount;
+    String colors;
+
     
 
     PlayerCashInOut({
@@ -72,6 +76,7 @@ class PlayerCashInOut {
         required this.time,
         required this.buyIn,
         required this.amount,
+        required this.colors,
       
     });
 
@@ -80,6 +85,7 @@ class PlayerCashInOut {
         time: json["time"],
         buyIn: json["buy_in"],
         amount: json["amount"],
+        colors:json["colors"]
     
     );
 
@@ -88,6 +94,7 @@ class PlayerCashInOut {
         "time": time,
         "buy_in": buyIn,
         "amount": amount,
+        "colors":colors
       
     };
 }

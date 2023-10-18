@@ -220,111 +220,111 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
             ),
     
     
-               GestureDetector(
-              onTap: (){
-             for (var i in _.playersList){
-              if(i.amount > 0  ){
+    //            GestureDetector(
+    //           onTap: (){
+    //          for (var i in _.playersList){
+    //           if(i.amount > 0  ){
                 
-                  _.winner[i.name] = i.amount;
+    //               _.winner[i.name] = i.amount;
     
     
     
                  
-              }
-              if(i.amount <0){
+    //           }
+    //           if(i.amount <0){
          
-                   _.losser[i.name] = i.amount;
+    //                _.losser[i.name] = i.amount;
     
               
     
-              }
+    //           }
     
-             }
-             print(_.playersList.length);
-                 print("Loser" + "${_.losser}");
-              print("Winner" + "${_.winner}");
-            int count = 0;
-            String name = "";
-            int amounts = 0;
+    //          }
+    //          print(_.playersList.length);
+    //              print("Loser" + "${_.losser}");
+    //           print("Winner" + "${_.winner}");
+    //         int count = 0;
+    //         String name = "";
+    //         int amounts = 0;
             
-            _.winner.forEach((winnerName, winnerAmount) {
-                     if(name != "" ){
-                      _.losser[name] = amounts;
-                      _.update();
-                     }
-                _.losser.forEach((losserName, losserAmount) {
+    //         _.winner.forEach((winnerName, winnerAmount) {
+    //                  if(name != "" ){
+    //                   _.losser[name] = amounts;
+    //                   _.update();
+    //                  }
+    //             _.losser.forEach((losserName, losserAmount) {
     
     
-                    print(winnerAmount);
-                    print(losserAmount.abs());
-             print(winnerAmount > losserAmount.abs());
-             print(winnerAmount < losserAmount.abs());
-       if(!_.ave.contains(losserName)){
-    if(winnerAmount >   losserAmount.abs()){
+    //                 print(winnerAmount);
+    //                 print(losserAmount.abs());
+    //          print(winnerAmount > losserAmount.abs());
+    //          print(winnerAmount < losserAmount.abs());
+    //    if(!_.ave.contains(losserName)){
+    // if(winnerAmount >   losserAmount.abs()){
     
-      _.finals.add(
-      {"winnerName":winnerName,"losserName":losserName,"Amount":losserAmount.abs()},
+    //   _.finals.add(
+    //   {"winnerName":winnerName,"losserName":losserName,"Amount":losserAmount.abs()},
     
       
-      );
-      _.update();
+    //   );
+    //   _.update();
     
-      count = winnerAmount - losserAmount.abs();
+    //   count = winnerAmount - losserAmount.abs();
       
-      //  _.losser.remove(losserName);
-       _.ave.add(losserName);
-       _.update();
+    //   //  _.losser.remove(losserName);
+    //    _.ave.add(losserName);
+    //    _.update();
           
-    }
+    // }
     
-    if(winnerAmount < losserAmount.abs()) {
-     if(count != 0 ) {
-      winnerAmount = count;
-      count = 0;
-     }
+    // if(winnerAmount < losserAmount.abs()) {
+    //  if(count != 0 ) {
+    //   winnerAmount = count;
+    //   count = 0;
+    //  }
     
-    _.finals.add(
-      {"winnerName":winnerName,"losserName":losserName,"Amount":winnerAmount},
+    // _.finals.add(
+    //   {"winnerName":winnerName,"losserName":losserName,"Amount":winnerAmount},
     
       
-      );
-      _.update();
-    name = losserName;
-    amounts = losserAmount.abs() - winnerAmount;
-    print("ASDASd" + "${amounts}");
+    //   );
+    //   _.update();
+    // name = losserName;
+    // amounts = losserAmount.abs() - winnerAmount;
+    // print("ASDASd" + "${amounts}");
     
     
-    }
+    // }
     
-    if(winnerAmount == losserAmount.abs()) {
+    // if(winnerAmount == losserAmount.abs()) {
      
     
-    _.finals.add(
-      {"winnerName":winnerName,"losserName":losserName,"Amount":losserAmount.abs()},
+    // _.finals.add(
+    //   {"winnerName":winnerName,"losserName":losserName,"Amount":losserAmount.abs()},
     
       
-      );
+    //   );
        
-    _.ave.add(losserName);
+    // _.ave.add(losserName);
     
-    }
-       }                
+    // }
+    //    }                
     
     
     
-                }
+    //             }
                 
                 
-                );
+    //             );
                
     
                         
-                // print(_.losser);
-            });
-                 print(_.finals);
-                // Get.to(()=>FinalSummary());
-              },
-              child: Text("Function")),
+    //             // print(_.losser);
+    //         });
+    //              print(_.finals);
+    //             // Get.to(()=>FinalSummary());
+    //           },
+    //           child: Text("Function")),
      GestureDetector(
                 onTap: (){
                   _.winnerCount = 0;
@@ -349,12 +349,43 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
            }
            print(_.winnerCount);
            print(_.losserCount);
-                //  if(_.winnerCount == _.losserCount.abs()) {
+                 if(_.winnerCount == _.losserCount.abs()) {
        Get.to(()=> FinalSummary());
-                 // }
-                 // else{
-                //    Get.snackbar("Error", "Not Equal");
-                //  }
+                 }
+                 else{
+                 Get.to(()=> FinalSummary());
+  // showDialog(
+  //   context: context,
+  //   builder: (context) {
+  //     return AlertDialog(
+  //       backgroundColor: Color(0xFF626D94),
+  //       title: Text('Error', style: TextStyle(
+  //                       fontSize: 20,
+  //                       fontWeight: FontWeight.w800,
+  //                       fontFamily: 'OpenSans',
+  //                       color: Colors.white
+  //                     ),),
+  //       content: Text("Winners amount not equal to lossers Amount", style: TextStyle(
+  //                       fontSize: 20,
+  //                       fontWeight: FontWeight.w800,
+  //                       fontFamily: 'OpenSans',
+  //                       color: Colors.white
+  //                     ),),
+  //       actions: <Widget>[
+  //         ElevatedButton(
+  //           child: 
+  //           Text('OK'),
+  //           onPressed: () {
+  //             Navigator.of(context).pop(); // Close the dialog
+  //           },
+  //         ),
+  //       ],
+  //     );
+  //   },
+  // );
+
+
+                 }
              
                 },
                 child: Container(

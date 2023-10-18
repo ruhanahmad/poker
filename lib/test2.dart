@@ -1,141 +1,172 @@
+import 'dart:math';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:screenshot/screenshot.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:image_gallery_saver/image_gallery_saver.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
+class MyHomePageSreen extends StatefulWidget {
+
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: PokerCalculatorScreen(),
-      ),
-    );
-  }
+  _MyHomePageSreenState createState() => _MyHomePageSreenState();
 }
 
-class PokerCalculatorScreen extends StatefulWidget {
-  @override
-  _PokerCalculatorScreenState createState() => _PokerCalculatorScreenState();
-}
+class _MyHomePageSreenState extends State<MyHomePageSreen> {
+  //Create an instance of ScreenshotController
+  ScreenshotController screenshotController = ScreenshotController();
 
-class _PokerCalculatorScreenState extends State<PokerCalculatorScreen> {
-  bool isExpanded = false;
+
+  Uint8List? _imageFile;
 
   @override
   Widget build(BuildContext context) {
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: null, // No app bar
-      body: SingleChildScrollView(
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text("widget.title"),
+      ),
+      body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Your existing widgets go here...
-
-            // Wrap the main and expandable containers in a parent container
-            Container(
-              width: 412,
-              height: isExpanded ? 243 : 60,
-              decoration: BoxDecoration(
-                color: Color(0xFF99A0BA),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+            Screenshot(
+              controller: screenshotController,
+              child: Container(
+                  padding: const EdgeInsets.all(30.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blueAccent, width: 5.0),
+                    color: Colors.amberAccent,
+                  ),
+                  child: Stack(
                     children: [
-                      Text("Name"),
-                      Text("Amount"),
-                      Text("Buyin"),
-                      Text("Net"),
+                      Image.asset(
+                        'asset/images/pokercalculator.png',
+                      ),
+                      Text("This widget will be captured as an image"),
                     ],
-                  ),
-                  // Expandable container
-                  if (isExpanded)
-                    Container(
-                      height: 111,
-                      width: 396,
-                      color: Color(0xFF626D94),
+                  )),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            ElevatedButton(
+              child: Text(
+                'Capture Above Widget',
+              ),
+              onPressed: () {
+                screenshotController
+                    .capture(delay: Duration(milliseconds: 10))
+                    .then((capturedImage) async {
+                setState(() {
+                   _imageFile = capturedImage; 
+                });
+                 
+  ShowCapturedWidget(context,  _imageFile!);
+                }).catchError((onError) {
+                  print(onError);
+                });
+              },
+            ),
+            ElevatedButton(
+              child: Text(
+                'Capture An Invisible Widget',
+              ),
+              onPressed: () {
+                var container = Container(
+                    padding: const EdgeInsets.all(30.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent, width: 5.0),
+                      color: Colors.redAccent,
+                    ),
+                    child: Stack(
+                      children: [
+                        Image.asset(
+                          'assets/images/flutter.png',
+                        ),
+                        Text(
+                          "This is an invisible widget",
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ],
+                    ));
+                screenshotController
+                    .captureFromWidget(
+                        InheritedTheme.captureAll(
+                            context, Material(child: container)),
+                        delay: Duration(seconds: 1))
+                    .then((capturedImage) {
+                  ShowCapturedWidget(context, capturedImage);
+                });
+              },
+            ),
+            ElevatedButton(
+              child: Text(
+                'Capture A dynamic Sized Widget',
+              ),
+              onPressed: () {
+                var randomItemCount = Random().nextInt(100);
+                var container = Builder(builder: (context) {
+                  return Container(
+                      // width: size2.width,
+                      padding: const EdgeInsets.all(30.0),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Colors.blueAccent, width: 5.0),
+                        color: Colors.redAccent,
+                      ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisSize: MainAxisSize.min,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Text 1"),
-                          Text("Text 2"),
-                          Text("Text 3"),
+                          for (int i = 0; i < randomItemCount; i++)
+                            Text("Tile Index $i"),
                         ],
-                      ),
-                    ),
-                ],
-              ),
-            ),
-
-            // Row with two containers
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  width: 170,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF99A0BA),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Save",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: 'OpenSans',
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 170,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF99A0BA),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Share",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: 'OpenSans',
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            // Container with height 67
-            Container(
-              width: 281,
-              height: 67,
-              decoration: BoxDecoration(
-                color: Color(0xFFF0A637),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Center(
-                child: Text(
-                  "Your Text Here",
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: 'OpenSans',
-                  ),
-                ),
-              ),
+                      ));
+                });
+                screenshotController
+                    .captureFromLongWidget(
+                  InheritedTheme.captureAll(
+                      context, Material(child: container)),
+                  delay: Duration(milliseconds: 100),
+                  context: context,
+                )
+                    .then((capturedImage) {
+                  ShowCapturedWidget(context, capturedImage);
+                });
+              },
             ),
           ],
         ),
       ),
     );
   }
+
+  Future<dynamic> ShowCapturedWidget(
+      BuildContext context, Uint8List capturedImage) {
+    return showDialog(
+      useSafeArea: false,
+      context: context,
+      builder: (context) => Scaffold(
+        appBar: AppBar(
+          title: Text("Captured widget screenshot"),
+        ),
+        body: Center(child: Image.memory(capturedImage)),
+      ),
+    );
+  }
+
+  // _saved(File image) async {
+  //   // final result = await ImageGallerySaver.save(image.readAsBytesSync());
+  //   print("File Saved to Gallery");
+  // }
 }

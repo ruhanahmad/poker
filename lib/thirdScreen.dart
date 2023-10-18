@@ -426,7 +426,7 @@ List<Player> mainRecords = [];
                 // double n =   _.playersList[widget.index].addresses[widget.index].amount /   _.playersList[widget.index].buyIn; 
                 // print(n);
                 // showvalues = n.toInt();
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn:double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text)  ));
+                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn:double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text) ,colors: "Colors.green" ));
                         //  toggleBar(true);
                           print(isGreen);
                           print(data.addresses);
@@ -449,7 +449,7 @@ List<Player> mainRecords = [];
                         setState(() {
                             _.playersList[widget.index].amount  -=  int.parse(amountController.text)  ;
                                 showvalues =  n ;   
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text) ));
+                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text) ,colors: "Colors.red"));
 
                           print(data.addresses);
                           // isGreen = false;
@@ -485,7 +485,7 @@ List<Player> mainRecords = [];
 
     //        for (final addressRecord in  data.addresses)
             Container(
-              height: 120,
+              height: 200,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
                 itemCount: data.addresses.length,
@@ -506,8 +506,8 @@ List<Player> mainRecords = [];
                               child: Row(
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                     Text('${data.addresses[i].time}',style: TextStyle(color: isGreen == true? Colors.green:Colors.red ),),
-                                  Text('${data.addresses[i].amount}'),
+                                     Text('${data.addresses[i].time}',style: TextStyle(color: Colors.white ),),
+                                  Text('${data.addresses[i].amount}',style: TextStyle(color: data.addresses[i].colors == "Colors.red" ?Colors.red:Colors.green),),
                                   Text('${data.addresses[i].buyIn}'),
                                   IconButton(onPressed: (){
                                     setState(() {
@@ -752,25 +752,25 @@ int showvalue =1;
                           color: Colors.white,
                         ),
                       ),
-                    if (!savedIcon)
-                      IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isDelete = true;
-                        //       Future.delayed(Duration(microseconds: 200)).then((value) {
-                        //    isDelete = false;
-                        // });
-                            });
-                            Future.delayed(const Duration(milliseconds: 1000)).then((value) {
-                  isDelete = false;
-                  setState(() {});
-                });
+                //     if (!savedIcon)
+                //       IconButton(
+                //           onPressed: () {
+                //             setState(() {
+                //               isDelete = true;
+                //         //       Future.delayed(Duration(microseconds: 200)).then((value) {
+                //         //    isDelete = false;
+                //         // });
+                //             });
+                //             Future.delayed(const Duration(milliseconds: 1000)).then((value) {
+                //   isDelete = false;
+                //   setState(() {});
+                // });
                              
-                          },
-                          icon: const Icon(
-                            Icons.delete_outline_rounded,
-                            color: Colors.white,
-                          ))
+                //           },
+                //           icon: const Icon(
+                //             Icons.delete_outline_rounded,
+                //             color: Colors.white,
+                //           ))
                   ],
                 ),
               ),

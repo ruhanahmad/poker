@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -5,16 +7,23 @@ import 'package:get/get.dart';
 import 'package:poker/finalStack.dart';
 
 import 'package:poker/models/player_model.dart';
+import 'package:poker/share.dart';
 
 import 'controllers/data_controller.dart';
 
-class WhoPay extends StatelessWidget {
+class WhoPay extends StatefulWidget {
+
+  Uint8List? image;
+WhoPay({required this.image});
 
 
 
+  @override
+  State<WhoPay> createState() => _WhoPayState();
+}
 
-
-
+class _WhoPayState extends State<WhoPay> {
+  
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -242,7 +251,7 @@ SizedBox(height: 10,),
             GestureDetector(
              onTap: (){
  
-              // Get.to(()=>FinalSummary());
+              Get.to(()=>Shares(imageFilessss:widget.image));
             },
               child: Container(
                 width: 281,
