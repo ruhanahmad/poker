@@ -13,11 +13,13 @@
   </intent>
 </queries>
     <uses-permission android:name="android.permission.INTERNET"/>
-    
+   
     <application
         android:label="poker"
         android:name="${applicationName}"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
+        
         <!-- Provide required visibility configuration for API level 30 and above -->
         <activity
             android:name=".MainActivity"

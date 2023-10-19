@@ -60,6 +60,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       child: TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical:8),
                            border: InputBorder.none, // Remove the underline
                           hintText: 'Email'),
                       ),
@@ -83,9 +84,11 @@ class _AuthScreenState extends State<AuthScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      
                       controller: _passwordController,
                       obscureText:true,
                       decoration: InputDecoration(
+                         contentPadding: EdgeInsets.symmetric(vertical:8),
                         
                          border: InputBorder.none, // Remove the underline
                         hintText: 'Password'),
@@ -136,6 +139,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   
                   
                 } catch (e) {
+                  Get.snackbar("Error","Error signing in: $e");
                   print('Error signing in: $e');
                 }
               },

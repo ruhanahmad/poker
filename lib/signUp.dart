@@ -93,6 +93,7 @@ final _formKey = GlobalKey<FormState>();
                                                                               controller: _userNameController,
                                                                                
                                                                               decoration: InputDecoration(
+                                                                                  contentPadding: EdgeInsets.symmetric(vertical:11),
                                                                               
                                                                                  // floatingLabelBehavior: FloatingLabelBehavior.always,
                                                                                  border: InputBorder.none,
@@ -128,6 +129,7 @@ final _formKey = GlobalKey<FormState>();
                                                   child: TextFormField(
                                                     controller: _emailController,
                                                     decoration: InputDecoration(
+                                                        contentPadding: EdgeInsets.symmetric(vertical:11),
                              border: InputBorder.none, // Remove the underline
                             hintText: 'email'),
                              validator: (value) {
@@ -161,6 +163,7 @@ final _formKey = GlobalKey<FormState>();
                                                     keyboardType: TextInputType.number,
                                                     controller: _phoneController,
                                                     decoration: InputDecoration(
+                                                        contentPadding: EdgeInsets.symmetric(vertical:11),
                              border: InputBorder.none, // Remove the underline
                             hintText: 'phone'),
                              validator: (value) {
@@ -194,6 +197,7 @@ final _formKey = GlobalKey<FormState>();
                                                     obscureText: true,
                                                     controller: _passwordController,
                                                     decoration: InputDecoration(
+                                                        contentPadding: EdgeInsets.symmetric(vertical:11),
                              border: InputBorder.none, // Remove the underline
                             hintText: 'password'),
                              validator: (value) {
@@ -226,6 +230,7 @@ final _formKey = GlobalKey<FormState>();
                                                     obscureText: true,
                                                     controller: _confirmPasswordController,
                                                     decoration: InputDecoration(
+                                                        contentPadding: EdgeInsets.symmetric(vertical:11),
                              border: InputBorder.none, // Remove the underline
                             hintText: 'Confirm Password'),
                             validator: (value) {
