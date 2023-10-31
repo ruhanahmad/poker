@@ -35,14 +35,14 @@ class _WhoPayState extends State<WhoPay> {
           children: [
             const Text('Back', style: TextStyle(color: Colors.white)),
             const Spacer(),
-            TextButton.icon(
-              onPressed: () {
-              Get.to(()=>ContainerSelectionScreen())  ;
+            // TextButton.icon(
+            //   onPressed: () {
+            //   Get.to(()=>ContainerSelectionScreen())  ;
      
-              },
-              icon: const Icon(Icons.arrow_forward, color: Colors.white),
-              label: const Text('Start'),
-            ),
+            //   },
+            //   icon: const Icon(Icons.arrow_forward, color: Colors.white),
+            //   label: const Text('Next'),
+            // ),
           ],
         ),
         backgroundColor: const Color(0xFF505771),
@@ -174,6 +174,7 @@ class _WhoPayState extends State<WhoPay> {
    
         GestureDetector(
                   onTap: ()async {
+                    
                     List<String> newjik = [];
                    newjik=  _.playersList.map((element) => 
                       element.name
@@ -222,6 +223,38 @@ await  usersTwow.add(playerlists);
 
 await  whoPays.add(player);
                 }
+
+                newjik = [];
+
+               showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        backgroundColor: Color(0xFF626D94),
+        title: Text('Saved', style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'OpenSans',
+                        color: Colors.white
+                      ),),
+        // content: Text("", style: TextStyle(
+        //                 fontSize: 20,
+        //                 fontWeight: FontWeight.w800,
+        //                 fontFamily: 'OpenSans',
+        //                 color: Colors.white
+        //               ),),
+        actions: <Widget>[
+          ElevatedButton(
+            child: 
+            Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+          ),
+        ],
+      );
+    },
+  ); 
 
                   },
                   child: Container(

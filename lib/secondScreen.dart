@@ -92,9 +92,13 @@ class SecondScreen extends StatelessWidget {
       ),
       backgroundColor: const Color(0xFF505771),
       body: Column(
+        
         children: [
           const Text('Starting Buy Ins',
-              style: TextStyle(color: Colors.white, fontSize: 40.0)),
+              style: TextStyle(color: Colors.white, fontSize: 40.0
+              ,
+              fontFamily: 'OpenSans'
+              )),
           const SizedBox(
             height: 20,
           ),
@@ -137,9 +141,10 @@ class SecondScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 50.0),
               child: Row(
                 children: [
-                  Text('Players', style: TextStyle(color: Colors.white)),
-                  Spacer(),
-                  Text('Buy Ins', style: TextStyle(color: Colors.white)),
+                  Text('Players', style: TextStyle(color: Colors.white,fontFamily: 'OpenSans')),
+                  SizedBox(width: 170,),
+                  // Spacer(),
+                  Text('Buy Ins', style: TextStyle(color: Colors.white,fontFamily: 'OpenSans')),
                 ],
               ),
             ),
@@ -162,12 +167,12 @@ class SecondScreen extends StatelessWidget {
         child: 
         ElevatedButton(
           onPressed: () {
-            if (_.playersList.length < _.maxPlayers.value) {
+          //  if (_.playersList.length < _.maxPlayers.value) {
               _.playersList.add(Player(name: "", buyIn: 0, amount: 0,addresses: [],finalAmount: 0,time:"",lastAmount: 0));
-              return;
-            }
-            Get.closeAllSnackbars();
-            Get.snackbar("Player", "max player reached");
+            //  return;
+          //  }
+            // Get.closeAllSnackbars();
+            // Get.snackbar("Player", "max player reached");
           },
           style: ElevatedButton.styleFrom(primary: const Color(0xFF7D37F0)),
           child: const Text('Add'),
@@ -203,6 +208,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
     super.initState();
   }
 int showvalue =1;
+double showvalues = 1;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -236,32 +242,34 @@ int showvalue =1;
               ),
             ),
             const SizedBox(width: 10.0),
-            DropdownButton<int>(
-              items: List.generate(
-                  200,
-                  (index) => DropdownMenuItem<int>(
-                        value: index + 1,
-                        child: Text((index + 1).toString()),
-                      )).toList(),
-              onChanged: (value) {
-                _.playersList[widget.index].buyIn = value!;
-                _.playersList[widget.index].amount =
-                    value * int.parse(_.buyInController.text);
-                amountController.text =
-                    (value * int.parse(_.buyInController.text)).toString();
-                setState(() {
+            Container(
+              // color: Colors.white,
+              child: DropdownButton<int>(
+                  icon: Icon(Icons.arrow_drop_down, color: Colors.white),
+                items: List.generate(
+                    200,
+                    (index) => DropdownMenuItem<int>(
+                          value: index + 1,
+                          child: Text((index + 1).toString()),
+                        )).toList(),
+                onChanged: (value) {
+                  _.playersList[widget.index].buyIn = value!;
+                  _.playersList[widget.index].amount =
+                      value * int.parse(_.buyInController.text);
+                  amountController.text =
+                      (value * int.parse(_.buyInController.text)).toString();
 
-                  showvalue = value;
-                  print(showvalue);
-                });
-//abhi to thek hay na?
-//yes acha ab vo animated container banana bnao na darling
-//ok
-                //phly hgya tha pr jb mai dbara screen load krti to error ajata tha
-                // Implement logic to handle dropdown selection
-              },
-              underline: Container(),
-              value: showvalue,
+                  setState(() {
+            
+                    showvalue = value;
+                    print(showvalue);
+                  });
+            
+                },
+                underline: Container(),
+                value: showvalue,
+                dropdownColor: Colors.white,
+              ),
             ),
             const SizedBox(width: 10.0),
             Expanded(
@@ -269,6 +277,8 @@ int showvalue =1;
                 controller: amountController,
                 onChanged: (txt) {
                   _.playersList[widget.index].amount = int.parse(txt);
+                   double n = double.parse(txt)    / double.parse(_.buyInController.text);
+                  _.playersList[widget.index].buyIn = n.toInt();
                 },
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -285,8 +295,13 @@ int showvalue =1;
             ElevatedButton(
               onPressed: () {
                 isEditing = !isEditing;
+
                 print(widget.index);
-                setState(() {});
+                double n = double.parse(amountController.text)    / double.parse(_.buyInController.text);
+                setState(() {
+                     _.playersList[widget.index].buyIn =  n ;   
+                });
+            //  data.buyIn = int.parse(n.toString());
                 Future.delayed(const Duration(milliseconds: 500)).then((value) {
                   savedIcon = false;
                   setState(() {});

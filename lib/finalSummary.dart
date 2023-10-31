@@ -536,19 +536,19 @@ SizedBox(height: 20,),
 //               // print(_.losser);
 //           });
  
-await screenshotController
-                    .capture()
-                    .then((capturedImage) async {
+// await screenshotController
+//                     .capture()
+//                     .then((capturedImage) async {
 
-                       // ShowCapturedWidget(context,  capturedImage!);
-                setState(() {
-                   _imageFile = capturedImage; 
-                });
+//                        // ShowCapturedWidget(context,  capturedImage!);
+//                 setState(() {
+//                    _imageFile = capturedImage; 
+//                 });
                  
 
-                }).catchError((onError) {
-                  print(onError);
-                });
+//                 }).catchError((onError) {
+//                   print(onError);
+//                 });
                print(_.finals);
                 print(_imageFile); 
              Get.to(()=>WhoPay(image:_imageFile));

@@ -212,15 +212,12 @@ class _SharesState extends State<Shares> {
                 ),
               ),
             ),
-            
-              Container(
-                color: Color(0xFF5E6995),
-                height: 50 ,
-                width: MediaQuery.of(context).size.width,
-
-                child: Row(children: [
-                   GestureDetector(
-                    onTap: () async{
+            SizedBox(height: 10,),
+           // Container with height 67
+            GestureDetector(
+             
+ 
+                                         onTap: () async{
 await screenshotController
                     .capture()
                     .then((capturedImage) async {
@@ -245,6 +242,7 @@ await screenshotController
   try {
     final result = await ImageGallerySaver.saveFile(file.path);
     if (result != null && result.isNotEmpty) {
+      Get.snackbar("Success","Image saved to Gallery");
       print('Image saved to gallery: $result');
     } else {
       print('Failed to save image to gallery.');
@@ -255,21 +253,88 @@ await screenshotController
 
 
 
-  //                      final url = 'instagram://library?AssetPath=$imageFile';
-  // //if (await launchUrl(Uri.parse(url))) {
-  //   await launchUrl(Uri.parse('https://snapchat.com'));
-                    },
-                    child: Container(height: 98,width: 153,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/snap.jpg"))))),
-                    GestureDetector(
-                      onTap: ()async {
-                         final url = 'instagram://library?AssetPath=${widget.imageFilessss}';
-  //if (await launchUrl(Uri.parse(url))) {
-    await launchUrl(Uri.parse('https://instagram.com'));
-                      },
-                      child: Container(height: 98,width: 153,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/insta.png")))))
-                ],),
 
-               ),
+              
+            },
+              child: Container(
+                width: 281,
+                height: 67,
+                decoration: BoxDecoration(
+                  color: Color(0xFFF0A637),
+                  borderRadius: BorderRadius.circular(200),
+                ),
+                child: Center(
+                  child: Text(
+                    "Download",
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      fontFamily: 'OpenSans',
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+ 
+//               Container(
+//                 color: Color(0xFF5E6995),
+//                 height: 50 ,
+//                 width: MediaQuery.of(context).size.width,
+
+//                 child: Row(children: [
+//                    GestureDetector(
+//                     onTap: () async{
+// await screenshotController
+//                     .capture()
+//                     .then((capturedImage) async {
+
+//                        // ShowCapturedWidget(context,  capturedImage!);
+//                 setState(() {
+//                    _imageFile = capturedImage; 
+//                 });
+                 
+
+//                 }).catchError((onError) {
+//                   print(onError);
+//                 });
+          
+//                 print(_imageFile); 
+//   final tempDir = await getTemporaryDirectory();
+//   final file = File('${tempDir.path}/temp_image.png');
+
+//   // Write the Uint8List to the temporary file
+//   await file.writeAsBytes(_imageFile!);
+
+//   try {
+//     final result = await ImageGallerySaver.saveFile(file.path);
+//     if (result != null && result.isNotEmpty) {
+//       print('Image saved to gallery: $result');
+//     } else {
+//       print('Failed to save image to gallery.');
+//     }
+//   } on PlatformException catch (e) {
+//     print('Error saving image to gallery: $e');
+//   }
+
+
+
+//   //                      final url = 'instagram://library?AssetPath=$imageFile';
+//   // //if (await launchUrl(Uri.parse(url))) {
+//   //   await launchUrl(Uri.parse('https://snapchat.com'));
+//                     },
+//                     child: Container(height: 98,width: 153,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/snap.jpg"))))),
+//                     GestureDetector(
+//                       onTap: ()async {
+//                          final url = 'instagram://library?AssetPath=${widget.imageFilessss}';
+//   //if (await launchUrl(Uri.parse(url))) {
+//     await launchUrl(Uri.parse('https://instagram.com'));
+//                       },
+//                       child: Container(height: 98,width: 153,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/insta.png")))))
+//                 ],),
+
+//                ),
               
           ],
         ),

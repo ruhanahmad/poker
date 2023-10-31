@@ -2,13 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poker/authentication.dart';
+import 'package:poker/chooseGame.dart';
 import 'package:poker/homepage.dart';
 import 'package:poker/playerdetailpage.dart';
+import 'package:poker/shared.dart';
+import 'package:poker/splashScreen.dart';
 import 'package:poker/test.dart';
 import 'dart:ui' as ui;
 void main() async{
    WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await PreferencesManager.instance.initialize();
   runApp(
       // new MediaQuery(
       //   data: new MediaQueryData.fromWindow(ui.window),
@@ -18,20 +22,23 @@ void main() async{
       //       WebViewExample()
             
       //       )),
-                PokerApp(),
+    
+                // PokerApp(),
+                PokerApp()
             );
  
     // WebViewExample() ,
     }
 
 class PokerApp extends StatelessWidget {
+   String username = PreferencesManager.instance.getUserName();
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: 
-    //  WebViewExample (), 
-     AuthScreen(),
+    //  WebViasewExample (), 
+  username == "" ?  SplashScreen():ChooseGamesScreen(),
     );
   }
 }

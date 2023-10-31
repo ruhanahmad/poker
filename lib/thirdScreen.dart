@@ -101,7 +101,7 @@ class ThirdScreen extends StatelessWidget {
      
               },
               icon: const Icon(Icons.arrow_forward, color: Colors.white),
-              label: const Text('Start'),
+              label: const Text('Finish Game'),
             ),
           ],
         ),
@@ -267,7 +267,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
             Row(
               children: [
                 Expanded(
-                  flex: 3,
+                  flex: 1,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -285,33 +285,34 @@ class _PlayerWidgetState extends State<PlayerWidget> {
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
                       ),
+                     
+                    ],
+                  ),
+                ),
+                SizedBox(width:80),
+                 Row(
+             
+                   children: [
                       Text(
-                        data.amount.toString(),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                    ],
-                  ),
-                ),
-                 Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.cyclone_outlined,color: Color(0xff97EEA5),),
-                      InkWell(
-                        onTap: (){
-                          isExpanded=!isExpanded;
-                          setState(() {
-                            
-                          });
-                        },
-                        child: Icon(isExpanded?Icons.keyboard_arrow_up: Icons.keyboard_arrow_down,color: Color(0xff97EEA5),),),
+                       data.amount.toString(),
+                       style: const TextStyle(
+                           color: Colors.white,
+                           fontWeight: FontWeight.bold,
+                           fontSize: 20),
+                     ),
+                     SizedBox(width: 30,),
+                     Icon(Icons.cyclone_outlined,color: Color(0xff97EEA5),),
+                     InkWell(
+                       onTap: (){
+                         isExpanded=!isExpanded;
+                         setState(() {
+                           
+                         });
+                       },
+                       child: Icon(isExpanded?Icons.keyboard_arrow_up: Icons.keyboard_arrow_down,color: Color(0xff97EEA5),),),
             
-                    ],
-                  ),
-                ),
+                   ],
+                 ),
               ],
             ),
         if(isExpanded)
@@ -342,15 +343,19 @@ List<Player> mainRecords = [];
               children: [
                 Padding(
                   
-                  padding: const EdgeInsets.symmetric(horizontal:8.0),
+                  padding: const EdgeInsets.symmetric(horizontal:35.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                 
                     children: [
+                      // SizedBox(width: 2,),
                     Text("Buy In",style: TextStyle(color: Color(0xffB4B4B4,),fontSize: 10),),
+                     SizedBox(width: 50,),
                      Text("Custom Amount",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),),
-                      Text("Cash in",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),),
-                       Text("Cash out",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),)
-                
+                       SizedBox(width: 50,),
+                      Text("Add",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),),
+                         SizedBox(width: 50,),
+                       Text("Remove",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),)
+                                
                   ],),
                 ),
                 SizedBox(height: 10,),
@@ -363,22 +368,36 @@ List<Player> mainRecords = [];
                       items: List.generate(
                           300,
                           (index) => DropdownMenuItem<int>(
+                            
                                 value: index + 1,
                                 child: Text((index + 1).toString()),
                               )).toList(),
-                      onChanged: (value) {
-                        _.playersList[widget.index].buyIn = value!;
-                        _.playersList[widget.index].amount =
-                            value * int.parse(_.buyInController.text);
-                        amountController.text =
-                            (value * int.parse(_.buyInController.text)).toString();
-                        setState(() {
-                          showvalue = value;
-                          print(showvalue);
-                        });
 
-                        // fair ok ok ustad g
-                        // Implement logic to handle dropdown selection
+                             
+                      onChanged: (value) {
+                      //  _.playersList[widget.index].buyIn = value!;
+                        // _.playersList[widget.index].amount =
+                        //    value! * int.parse(_.buyInController.text);
+     
+                    //  amountController.text =
+                    //         (value! * int.parse(_.buyInController.text)).toString();
+                     
+                           amountController.text =
+                            (value! * int.parse(_.buyInController.text)).toString();
+                         
+
+      showvalue = value!;   
+
+                        
+
+                        
+                             
+                        
+                         
+                          print(showvalue);
+                     
+
+                      
                       },
                       underline: Container(),
                       value: showvalue,
@@ -420,6 +439,7 @@ List<Player> mainRecords = [];
                          setState(() {
                             
                   _.playersList[widget.index].amount  +=  int.parse(amountController.text)  ;
+                    _.playersList[widget.index].buyIn  +=  showvalue  ;
                        showvalues =  n ;   
                        print(showvalues);
                 
@@ -448,6 +468,7 @@ List<Player> mainRecords = [];
 
                         setState(() {
                             _.playersList[widget.index].amount  -=  int.parse(amountController.text)  ;
+                            // _.playersList[widget.index].buyIn  -=  showvalue  ;
                                 showvalues =  n ;   
                           data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text) ,colors: "Colors.red"));
 
@@ -459,6 +480,10 @@ List<Player> mainRecords = [];
                       },
                       
                       child: Container(height: 27,width: 32,decoration: BoxDecoration(color: Color(0xFF99A0BA),borderRadius: BorderRadius.circular(10)),child: Icon(Icons.navigate_before,color: Colors.red,))),
+
+                        SizedBox(
+                      width: size.width * .10,
+                    ),
                    
                   ],
                 ),

@@ -15,7 +15,7 @@ String playerToJson(Player data) => json.encode(data.toJson());
 
 class Player {
   String name;
-  int buyIn;
+  var buyIn;
   int amount;
    List<PlayerCashInOut> addresses = [];
    int finalAmount;

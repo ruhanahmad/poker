@@ -7,6 +7,7 @@ import '../models/player_model.dart';
 
 class DataController extends GetxController
 {
+    int showvalues = 1;
   var maxPlayers = 0.obs;
   TextEditingController buyInController = TextEditingController();
   TextEditingController gameNameController = TextEditingController();

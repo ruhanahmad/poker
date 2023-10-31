@@ -340,7 +340,7 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
             }
             if(i.lastAmount <0){
        
-                 _.losserCount += i.lastAmount;
+                 _.losserCount += i.lastAmount.abs();
 
             
 
@@ -349,40 +349,41 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
            }
            print(_.winnerCount);
            print(_.losserCount);
-                 if(_.winnerCount == _.losserCount.abs()) {
+           var news =    _.winnerCount - _.losserCount;
+                 if(news.abs() == 0) {
        Get.to(()=> FinalSummary());
                  }
                  else{
-                 Get.to(()=> FinalSummary());
-  // showDialog(
-  //   context: context,
-  //   builder: (context) {
-  //     return AlertDialog(
-  //       backgroundColor: Color(0xFF626D94),
-  //       title: Text('Error', style: TextStyle(
-  //                       fontSize: 20,
-  //                       fontWeight: FontWeight.w800,
-  //                       fontFamily: 'OpenSans',
-  //                       color: Colors.white
-  //                     ),),
-  //       content: Text("Winners amount not equal to lossers Amount", style: TextStyle(
-  //                       fontSize: 20,
-  //                       fontWeight: FontWeight.w800,
-  //                       fontFamily: 'OpenSans',
-  //                       color: Colors.white
-  //                     ),),
-  //       actions: <Widget>[
-  //         ElevatedButton(
-  //           child: 
-  //           Text('OK'),
-  //           onPressed: () {
-  //             Navigator.of(context).pop(); // Close the dialog
-  //           },
-  //         ),
-  //       ],
-  //     );
-  //   },
-  // );
+            //    Get.to(()=> FinalSummary());
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        backgroundColor: Color(0xFF626D94),
+        title: Text('Error', style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'OpenSans',
+                        color: Colors.white
+                      ),),
+        content: Text("Winners amount not equal to lossers Amount,The missing amount is ${news.abs()}", style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'OpenSans',
+                        color: Colors.white
+                      ),),
+        actions: <Widget>[
+          ElevatedButton(
+            child: 
+            Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+          ),
+        ],
+      );
+    },
+  );
 
 
                  }

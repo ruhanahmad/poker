@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:poker/chooseGame.dart';
 import 'package:poker/controllers/data_controller.dart';
 import 'package:poker/homepage.dart';
+import 'package:poker/shared.dart';
 import 'package:poker/signUp.dart';
 
 
@@ -47,7 +50,7 @@ class _AuthScreenState extends State<AuthScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   Container(height: 57,width:57,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/user.png"))),),
+                   Container(height: 57,width:57,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/ph_user.png"))),),
                   Container(
                     height: 40,
                     width: 291,
@@ -113,6 +116,7 @@ class _AuthScreenState extends State<AuthScreen> {
   ),
               onPressed: () async {
                 try {
+                  EasyLoading.show();
                   UserCredential userCredential =
                       await _auth.signInWithEmailAndPassword(
                     email: _emailController.text,
@@ -132,13 +136,15 @@ class _AuthScreenState extends State<AuthScreen> {
 //                   "address":player.addresses.map((addr) => addr.toJson()).toList(),
        
 // };
-      
-               Get.to(()=>MyApp());
+ PreferencesManager.instance.setUserName(_.nn);
+      EasyLoading.dismiss();
+               Get.to(()=>ChooseGamesScreen());
 
 //                   });
                   
                   
                 } catch (e) {
+                  EasyLoading.dismiss();
                   Get.snackbar("Error","Error signing in: $e");
                   print('Error signing in: $e');
                 }

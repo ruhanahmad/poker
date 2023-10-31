@@ -79,7 +79,7 @@ final _formKey = GlobalKey<FormState>();
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
-                                                 Container(height: 57,width:57,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/user.png"))),),
+                                                 Container(height: 57,width:57,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/ph_user.png"))),),
                                                 Container(
                                                   height: 40,
                                                   width: 291,
