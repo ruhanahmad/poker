@@ -31,20 +31,28 @@ class _WhoPayState extends State<WhoPay> {
     DataController _ = Get.find();
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            const Text('Back', style: TextStyle(color: Colors.white)),
-            const Spacer(),
-            // TextButton.icon(
-            //   onPressed: () {
-            //   Get.to(()=>ContainerSelectionScreen())  ;
-     
-            //   },
-            //   icon: const Icon(Icons.arrow_forward, color: Colors.white),
-            //   label: const Text('Next'),
-            // ),
-          ],
-        ),
+        automaticallyImplyLeading: false,
+        title: 
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(height: 24,width: 123,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/back.png"))),)),
+
+                              GestureDetector(
+                onTap: () {
+                  // Get.back();
+                },
+                child: Row(
+                  children: [
+                    Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
+                    Text("Poker Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
+                  ],
+                )),
+            ],),
         backgroundColor: const Color(0xFF505771),
         elevation: 0, // No shadow under the app bar
       ),
@@ -262,7 +270,7 @@ await  whoPays.add(player);
                     height: 55,
                     decoration: BoxDecoration(
                       color: Color(0xFF626D94),
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(200),
                     ),
                     child: Center(
                       child: Text(

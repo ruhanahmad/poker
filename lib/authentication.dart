@@ -65,7 +65,10 @@ class _AuthScreenState extends State<AuthScreen> {
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(vertical:8),
                            border: InputBorder.none, // Remove the underline
-                          hintText: 'Email'),
+                          hintText: 'Email',
+                               hintStyle: TextStyle(color: Color(0xFFD2D2D2,),
+                                                                                 fontStyle: FontStyle.italic,),
+                          ),
                       ),
                     ),
                   ),
@@ -94,7 +97,11 @@ class _AuthScreenState extends State<AuthScreen> {
                          contentPadding: EdgeInsets.symmetric(vertical:8),
                         
                          border: InputBorder.none, // Remove the underline
-                        hintText: 'Password'),
+                        hintText: 'Password',
+                        
+                             hintStyle: TextStyle(color: Color(0xFFD2D2D2,),
+                                                                                 fontStyle: FontStyle.italic,),
+                        ),
                     ),
                   ),
                 ),
@@ -163,6 +170,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   Text("or",style: const TextStyle(  fontSize: 14.0,fontFamily: 'Open Sans',
                               fontWeight: FontWeight.w800,
                               color: Colors.white,)),
+                              SizedBox(width: 5,),
                                 Text("Create An Account",style: const TextStyle(  fontSize: 14.0,fontFamily: 'Open Sans',
                           fontWeight: FontWeight.w800,
                           color: Color(0xFF6486FF))),

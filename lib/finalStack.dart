@@ -65,7 +65,7 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
                 child: Row(
                   children: [
                     Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
-                    Text("Poken Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
+                    Text("Poker Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
                   ],
                 )),
             ],),
@@ -113,7 +113,7 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
               width: double.infinity, // Full width
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:90.0),
+                  padding: const EdgeInsets.symmetric(horizontal:85.0),
                   child: Row(
                     
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -354,7 +354,7 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
        Get.to(()=> FinalSummary());
                  }
                  else{
-            //    Get.to(()=> FinalSummary());
+        //        Get.to(()=> FinalSummary());
   showDialog(
     context: context,
     builder: (context) {
@@ -409,7 +409,7 @@ class _ContainerSelectionScreenState extends State<ContainerSelectionScreen> {
                   ),
                 ),
               ),
-    
+    SizedBox(height: 30,),
           ],
         ),
       ),

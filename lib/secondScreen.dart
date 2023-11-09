@@ -36,55 +36,98 @@ class SecondScreen extends StatelessWidget {
     DataController _ = Get.find();
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Back', style: TextStyle(color: Colors.white)),
-            const Spacer(),
-            TextButton.icon(
-              onPressed: () async{
-      //           final qq = _.playersList.toList();
-      //            for (var ll in qq) {
-      //                       print(ll.name);
-      //                    }
+//             const Text('Back', style: TextStyle(color: Colors.white)),
+//             const Spacer(),
+//             TextButton.icon(
+//               onPressed: () async{
+//       //           final qq = _.playersList.toList();
+//       //            for (var ll in qq) {
+//       //                       print(ll.name);
+//       //                    }
 
-      //  final nn =    _.playersList.map((element) {
-      //                   //  print(element.name) ;
+//       //  final nn =    _.playersList.map((element) {
+//       //                   //  print(element.name) ;
 
-      //                     // print(element.name);
-      //                     // print(element.buyIn);
+//       //                     // print(element.name);
+//       //                     // print(element.buyIn);
                          
-      //                    }).toList();
+//       //                    }).toList();
                         
-//              _.ref = await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").add({"gameNamw":_.gameNameController.text});
-//              _.update();
+// //              _.ref = await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").add({"gameNamw":_.gameNameController.text});
+// //              _.update();
 
-//                                final usersTwow =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
+// //                                final usersTwow =await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
                       
-//                 for (var player in _.playersList){
+// //                 for (var player in _.playersList){
 
-//                   final playerlists = {
-//                   "name":player.name ,
-//                   "buyin":player.buyIn,
-//                   "amount":player.amount,
-//                   "address":player.addresses.map((addr) => addr.toJson()).toList(),
-//                   "finalStack":"",
-//                   "gameName":_.gameNameController.text
+// //                   final playerlists = {
+// //                   "name":player.name ,
+// //                   "buyin":player.buyIn,
+// //                   "amount":player.amount,
+// //                   "address":player.addresses.map((addr) => addr.toJson()).toList(),
+// //                   "finalStack":"",
+// //                   "gameName":_.gameNameController.text
 
           
 
-//                   };
+// //                   };
 
-// await  usersTwow.add(playerlists);
-//                 }
+// // await  usersTwow.add(playerlists);
+// //                 }
               
-                _.startTime = DateTime.now();
+//                 _.startTime = DateTime.now();
 
-                Get.to(()=>ThirdScreen());
-                // Implement the logic to proceed to the next screen
-              },
-              icon: const Icon(Icons.arrow_forward, color: Colors.white),
-              label: const Text('Start'),
-            ),
+//                 Get.to(()=>ThirdScreen());
+//                 // Implement the logic to proceed to the next screen
+//               },
+//               icon: const Icon(Icons.arrow_forward, color: Colors.white),
+//               label: const Text('Start'),
+//             ),
+
+
+ Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                 GestureDetector(
+ onTap: () {
+   Get.back();
+ },
+ child: 
+ Container(height: 24,width: 123,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/back.png"))),)),
+         SizedBox(width: 30,),
+               GestureDetector(
+ onTap: () {
+   // Get.back();
+ },
+ child: Row(
+   children: [
+     Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
+     Text("Poken Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
+   ],
+ )),
+               ],),
+
+                   
+            
+
+
+                                      GestureDetector(
+                      onTap: () {
+                          _.startTime = DateTime.now();
+
+                Get.to(()=>ThirdScreen()); 
+                      },
+                      child: 
+                      Container(height: 24,width: 123,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/start.png"))),)),
+
+
+
+
+              
           ],
         ),
         backgroundColor: const Color(0xFF505771),

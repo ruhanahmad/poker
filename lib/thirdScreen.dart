@@ -91,20 +91,52 @@ class ThirdScreen extends StatelessWidget {
     DataController _ = Get.find();
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        automaticallyImplyLeading: false,
+        title:
+               Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Back', style: TextStyle(color: Colors.white)),
-            const Spacer(),
-            TextButton.icon(
-              onPressed: () {
-              Get.to(()=>ContainerSelectionScreen())  ;
-     
-              },
-              icon: const Icon(Icons.arrow_forward, color: Colors.white),
-              label: const Text('Finish Game'),
-            ),
+
+ Row(
+              
+                 children: [
+                 GestureDetector(
+ onTap: () {
+   Get.back();
+ },
+ child: 
+ Container(height: 24,width: 123,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/back.png"))),)),
+         SizedBox(width: 30,),
+               GestureDetector(
+ onTap: () {
+   // Get.back();
+ },
+ child: Row(
+   children: [
+     Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
+     Text("Poken Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
+   ],
+ )),
+               ],),
+
+                   
+            
+
+
+                                      GestureDetector(
+                      onTap: () {
+                          Get.to(()=>ContainerSelectionScreen())  ;
+                      },
+                      child: 
+                      Container(height: 24,width: 123,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/endgame.png"))),)),
+
+
+
+
+              
           ],
         ),
+  
         backgroundColor: const Color(0xFF505771),
         elevation: 0, // No shadow under the app bar
       ),
@@ -167,8 +199,10 @@ class ThirdScreen extends StatelessWidget {
                     Text(' Total Buy Ins',
                         style: TextStyle(color: Colors.white)),
                     Spacer(),
-                    Text('Numerical Amount ',
-                        style: TextStyle(color: Colors.white)),
+                    Expanded(
+                      child: Text('Numerical Amount ',
+                          style: TextStyle(color: Colors.white)),
+                    ),
                   ],
                 ),
               ),
@@ -258,7 +292,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
         margin: const EdgeInsets.symmetric(vertical: 5.0),
         decoration: BoxDecoration(
           color: const Color(0xff626D94),
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(15.0),
         ),
         child: 
         Column(
@@ -301,7 +335,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
                            fontSize: 20),
                      ),
                      SizedBox(width: 30,),
-                     Icon(Icons.cyclone_outlined,color: Color(0xff97EEA5),),
+                   Container(height: 20,width: 20,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/database.png"))),),
                      InkWell(
                        onTap: (){
                          isExpanded=!isExpanded;
@@ -345,147 +379,151 @@ List<Player> mainRecords = [];
                   
                   padding: const EdgeInsets.symmetric(horizontal:35.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                  
                     children: [
                       // SizedBox(width: 2,),
                     Text("Buy In",style: TextStyle(color: Color(0xffB4B4B4,),fontSize: 10),),
-                     SizedBox(width: 50,),
+                     
                      Text("Custom Amount",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),),
-                       SizedBox(width: 50,),
+                 
                       Text("Add",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),),
-                         SizedBox(width: 50,),
+                         
                        Text("Remove",style: TextStyle(color: Color(0xffB4B4B4),fontSize: 10),)
                                 
                   ],),
                 ),
                 SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                 
-                    const SizedBox(width: 10.0),
-                    DropdownButton<int>(
-                      items: List.generate(
-                          300,
-                          (index) => DropdownMenuItem<int>(
-                            
-                                value: index + 1,
-                                child: Text((index + 1).toString()),
-                              )).toList(),
-
-                             
-                      onChanged: (value) {
-                      //  _.playersList[widget.index].buyIn = value!;
-                        // _.playersList[widget.index].amount =
-                        //    value! * int.parse(_.buyInController.text);
-     
-                    //  amountController.text =
-                    //         (value! * int.parse(_.buyInController.text)).toString();
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:35.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                   
+                      // const SizedBox(width: 10.0),
+                      DropdownButton<int>(
+                        items: List.generate(
+                            300,
+                            (index) => DropdownMenuItem<int>(
+                              
+                                  value: index + 1,
+                                  child: Text((index + 1).toString()),
+                                )).toList(),
+                
+                               
+                        onChanged: (value) {
+                        //  _.playersList[widget.index].buyIn = value!;
+                          // _.playersList[widget.index].amount =
+                          //    value! * int.parse(_.buyInController.text);
                      
-                           amountController.text =
-                            (value! * int.parse(_.buyInController.text)).toString();
-                         
-
-      showvalue = value!;   
-
+                      //  amountController.text =
+                      //         (value! * int.parse(_.buyInController.text)).toString();
+                       
+                             amountController.text =
+                              (value! * int.parse(_.buyInController.text)).toString();
+                           
+                
+                      showvalue = value!;   
+                
+                          
+                
+                          
+                               
+                          
+                           
+                            print(showvalue);
+                       
+                
                         
-
-                        
-                             
-                        
-                         
-                          print(showvalue);
-                     
-
-                      
-                      },
-                      underline: Container(),
-                      value: showvalue,
-                    ),
-                    const SizedBox(width: 10.0),
-                    Container(
-                      height: 30,
-                      width: 80,
-                      child: TextField(
-                        controller: amountController,
-                        onChanged: (txt) {
-                          _.playersList[widget.index].addresses[widget.index].amount = int.parse(txt);
-                    
-                      
-
-                          print(  _.playersList[widget.index].addresses[widget.index].amount);
                         },
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(8.0),
-                          hintText: 'Amount',
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                        underline: Container(),
+                        value: showvalue,
+                      ),
+                  //    const SizedBox(width: 10.0),
+                      Container(
+                        height: 30,
+                        width: 80,
+                        child: TextField(
+                          controller: amountController,
+                          onChanged: (txt) {
+                            _.playersList[widget.index].addresses[widget.index].amount = int.parse(txt);
+                      
+                        
+                
+                            print(  _.playersList[widget.index].addresses[widget.index].amount);
+                          },
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(8.0),
+                            hintText: 'Amount',
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: size.width * .05,
-                    ),
-
-                    GestureDetector(
-                      onTap: ()async{
-                     
-      // await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
- double n = double.parse(amountController.text)    / double.parse(_.buyInController.text);
-                         setState(() {
-                            
-                  _.playersList[widget.index].amount  +=  int.parse(amountController.text)  ;
-                    _.playersList[widget.index].buyIn  +=  showvalue  ;
-                       showvalues =  n ;   
-                       print(showvalues);
+                      // SizedBox(
+                      //   width: size.width * .05,
+                      // ),
                 
-                // double n =   _.playersList[widget.index].addresses[widget.index].amount /   _.playersList[widget.index].buyIn; 
-                // print(n);
-                // showvalues = n.toInt();
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn:double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text) ,colors: "Colors.green" ));
-                        //  toggleBar(true);
-                          print(isGreen);
-                          print(data.addresses);
-                      //  mainRecord.addresses[widget.index].addresses.add
-                        });
-                        //  _.playersList.add(PlayerList(amount:  _.playerCashInOut[widget.index].amount ,buyIn: _.playerCashInOut[widget.index].amount ,time: ""));
-
-                        //  print(_.playerCashInOut.length);
-                      },
-                      child: Container(height: 27,width: 32,decoration: BoxDecoration(color: Color(0xFF99A0BA),borderRadius: BorderRadius.circular(10)),child: Icon(Icons.add,color: Colors.green,),)),
-
-                     SizedBox(
-                      width: size.width * .05,
-                    ),
-
-                    GestureDetector(
-                      onTap: (){
-                         double n = double.parse(amountController.text)    / double.parse(_.buyInController.text);
-
-                        setState(() {
-                            _.playersList[widget.index].amount  -=  int.parse(amountController.text)  ;
-                            // _.playersList[widget.index].buyIn  -=  showvalue  ;
-                                showvalues =  n ;   
-                          data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text) ,colors: "Colors.red"));
-
-                          print(data.addresses);
-                          // isGreen = false;
-                          print(isGreen);
-                      //  mainRecord.addresses[widget.index].addresses.add
-                        });
-                      },
-                      
-                      child: Container(height: 27,width: 32,decoration: BoxDecoration(color: Color(0xFF99A0BA),borderRadius: BorderRadius.circular(10)),child: Icon(Icons.navigate_before,color: Colors.red,))),
-
-                        SizedBox(
-                      width: size.width * .10,
-                    ),
-                   
-                  ],
+                      GestureDetector(
+                        onTap: ()async{
+                       
+                      // await FirebaseFirestore.instance.collection("users").doc(_.nn).collection("games").doc(_.ref!.id).collection("players");
+                 double n = double.parse(amountController.text)    / double.parse(_.buyInController.text);
+                           setState(() {
+                              
+                    _.playersList[widget.index].amount  +=  int.parse(amountController.text)  ;
+                      _.playersList[widget.index].buyIn  +=  showvalue  ;
+                         showvalues =  n ;   
+                         print(showvalues);
+                  
+                  // double n =   _.playersList[widget.index].addresses[widget.index].amount /   _.playersList[widget.index].buyIn; 
+                  // print(n);
+                  // showvalues = n.toInt();
+                            data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn:double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text) ,colors: "Colors.green" ));
+                          //  toggleBar(true);
+                            print(isGreen);
+                            print(data.addresses);
+                        //  mainRecord.addresses[widget.index].addresses.add
+                          });
+                          //  _.playersList.add(PlayerList(amount:  _.playerCashInOut[widget.index].amount ,buyIn: _.playerCashInOut[widget.index].amount ,time: ""));
+                
+                          //  print(_.playerCashInOut.length);
+                        },
+                        child: Container(height: 27,width: 32,decoration: BoxDecoration(color: Color(0xFF99A0BA),borderRadius: BorderRadius.circular(10)),child: Icon(Icons.add,color: Colors.green,),)),
+                
+                      //  SizedBox(
+                      //   width: size.width * .05,
+                      // ),
+                
+                      GestureDetector(
+                        onTap: (){
+                           double n = double.parse(amountController.text)    / double.parse(_.buyInController.text);
+                
+                          setState(() {
+                              _.playersList[widget.index].amount  -=  int.parse(amountController.text)  ;
+                              // _.playersList[widget.index].buyIn  -=  showvalue  ;
+                                  showvalues =  n ;   
+                            data.addresses.add(PlayerCashInOut(time: "${now.year.toString()}-${now.month.toString()}-${now.day.toString()}", buyIn: double.parse(showvalues.toStringAsFixed(2)), amount:int.parse(amountController.text) ,colors: "Colors.red"));
+                
+                            print(data.addresses);
+                            // isGreen = false;
+                            print(isGreen);
+                        //  mainRecord.addresses[widget.index].addresses.add
+                          });
+                        },
+                        
+                        child: Container(height: 27,width: 32,decoration: BoxDecoration(color: Color(0xFF99A0BA),borderRadius: BorderRadius.circular(10)),child: Icon(Icons.navigate_before,color: Colors.red,))),
+                
+                      //     SizedBox(
+                      //   width: size.width * .10,
+                      // ),
+                     
+                    ],
+                  ),
                 ),
           //         Expanded(
           //   child: Obx(

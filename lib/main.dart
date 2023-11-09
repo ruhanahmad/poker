@@ -36,6 +36,7 @@ class PokerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      
       home: 
     //  WebViasewExample (), 
   username == "" ?  SplashScreen():ChooseGamesScreen(),

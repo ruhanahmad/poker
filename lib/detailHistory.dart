@@ -68,31 +68,31 @@ class _HistoryDetailState extends State<HistoryDetail> {
             ),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(DateTime.now().toString().split(' ')[0],
-                          style: const TextStyle(
-                            color: Colors.grey,
-                          )),
-                      Row(
-                        children: [
-                          const Text('Buy In: ',
-                              style: TextStyle(
-                                color: Colors.grey,
-                              )),
-                          // Replace '120' with the actual buy-in value from the previous screen
-                          Text(_.buyInController.text,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                              )),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(DateTime.now().toString().split(' ')[0],
+                //           style: const TextStyle(
+                //             color: Colors.grey,
+                //           )),
+                //       Row(
+                //         children: [
+                //           const Text('Buy In: ',
+                //               style: TextStyle(
+                //                 color: Colors.grey,
+                //               )),
+                //           // Replace '120' with the actual buy-in value from the previous screen
+                //           Text(_.buyInController.text,
+                //               style: const TextStyle(
+                //                 color: Colors.grey,
+                //               )),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(
@@ -104,23 +104,24 @@ class _HistoryDetailState extends State<HistoryDetail> {
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 50.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Player', style: TextStyle(fontSize: 15,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)),
-                    Spacer(),
+                  //  Spacer(),
                     Text('Buy In',
                         style: TextStyle(fontSize: 15,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)),
-                    Spacer(),
+                 //   Spacer(),
                     Text('Buy Out',
                         style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)
                         ),
 
-                          Spacer(),
+                       //   Spacer(),
                             Text('Net',
                         style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
@@ -176,55 +177,41 @@ class _HistoryDetailState extends State<HistoryDetail> {
                           //                  color: Colors.green.withOpacity(0.2),
                           //                ),
                           child: Padding(
-                            padding: const EdgeInsets.all(20.0),
+                              padding: EdgeInsets.symmetric(horizontal: 50.0,vertical: 40),
                             child: Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
-                             Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                               crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                SizedBox(width: 35,),
-                                   Text(" ${name} ", style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
+                             Text(" ${name} ", style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,) ),
                             //   SizedBox(height: 5,),
                             
-                               SizedBox(width: 85,),
+                              
                                 Text(" ${buyIn} " , style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)),
-                               SizedBox(width: 85,),
+                              
                                Text(" ${buyOut} " , style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)),  
-                         SizedBox(width: 15,),
-                               Text("|" , style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,)),  
-                        SizedBox(width: 15,),
+                        
+                  // Text("|" , style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
+                  //       fontWeight: FontWeight.w800,
+                  //       color: Colors.white,)),  
+                  //       SizedBox(width: 15,),
                                Text("${lastAmount}" , style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
-                        color: Colors.white,)),  
-                                 // Text(" ${name} " ),
-                                 //   SizedBox(height: 5,),
-                                 //     Text(" ${payment} " ),
-                //                              GestureDetector(
-                // onTap: () {
-                  
-                // },
-                // child: Container(height: 24,width: 60,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/right.png"))),)),
-                             ],),
+                        color: Colors.white,)),
                              
-                               Column(
+                            //    Column(
                               
-                               children: [
+                            //    children: [
                                  
-                                                     //  Text( formattedDate  ),
-                                                     //  SizedBox(height: 5,),
-                                                     //    Text( formattedTime  ),
+                            //                          //  Text( formattedDate  ),
+                            //                          //  SizedBox(height: 5,),
+                            //                          //    Text( formattedTime  ),
                              
-                             ],),
+                            //  ],),
                              
                              
                             ],),
@@ -351,7 +338,13 @@ class _HistoryDetailState extends State<HistoryDetail> {
                     );
                   } else if (subSnapshot.hasError) {
                     return Text('Error: ${subSnapshot.error}');
-                  } else {
+                  
+                  }
+                  // else if (!subSnapshot.hasData) {
+                  //   return Text("No Details");
+                  // }
+                  
+                   else {
                     return CircularProgressIndicator();
                   }
                 },

@@ -69,31 +69,31 @@ class History extends StatelessWidget {
             ),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(DateTime.now().toString().split(' ')[0],
-                          style: const TextStyle(
-                            color: Colors.grey,
-                          )),
-                      Row(
-                        children: [
-                          const Text('Buy In: ',
-                              style: TextStyle(
-                                color: Colors.grey,
-                              )),
-                          // Replace '120' with the actual buy-in value from the previous screen
-                          Text(_.buyInController.text,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                              )),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(DateTime.now().toString().split(' ')[0],
+                //           style: const TextStyle(
+                //             color: Colors.grey,
+                //           )),
+                //       Row(
+                //         children: [
+                //           const Text('Buy In: ',
+                //               style: TextStyle(
+                //                 color: Colors.grey,
+                //               )),
+                //           // Replace '120' with the actual buy-in value from the previous screen
+                //           Text(_.buyInController.text,
+                //               style: const TextStyle(
+                //                 color: Colors.grey,
+                //               )),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(
@@ -103,25 +103,31 @@ class History extends StatelessWidget {
               height: 40,
               color: const Color(0xFF626D94),
               child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Name', style: TextStyle(fontSize: 15,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)),
-                    Spacer(),
+                   
                     Text('Date',
                         style: TextStyle(fontSize: 15,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)),
-                    Spacer(),
+                  //  SizedBox(width: 30,),
                     Text('People',
                         style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
                         color: Colors.white,)
                         ),
+                        Text('           ',
+                        style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,)
+                        ),
 
-                          Spacer(),
+                       
                   //   Text('Net',
                   //       style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
                   //       fontWeight: FontWeight.w800,
@@ -177,32 +183,33 @@ class History extends StatelessWidget {
                             child: Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
-                             Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                               crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                   Text(" ${gameName} ", style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,) ),
+                             Expanded(
+                               child: Text(" ${gameName} ", style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
+                                                     fontWeight: FontWeight.w800,
+                                                     color: Colors.white,) ),
+                             ),
                             //   SizedBox(height: 5,),
                             
-                               SizedBox(width: 35,),
-                                Text(" ${formattedDate} " , style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,)),
-                               SizedBox(width: 35,),
-                               Text(" ${playerName} " , style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,)),  
+                              //  SizedBox(width: 35,),
+                                Expanded(
+                                  child: Text(" ${formattedDate} " , style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
+                                                        fontWeight: FontWeight.w800,
+                                                        color: Colors.white,)),
+                                ),
+                              //  SizedBox(width: 35,),
+                               Expanded(
+                                 child: Text(" ${playerName} " , style: TextStyle(fontSize:15.0,fontFamily: 'Open Sans',
+                                                       fontWeight: FontWeight.w800,
+                                                       color: Colors.white,)),
+                               ),  
                                  // Text(" ${name} " ),
                                  //   SizedBox(height: 5,),
                                  //     Text(" ${payment} " ),
-                                             GestureDetector(
+                                       GestureDetector(
                 onTap: () {
                   Get.to(()=>HistoryDetail(id:ids));
                 },
                 child: Container(height: 24,width: 60,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/right.png"))),)),
-                             ],),
                              
                                Column(
                               

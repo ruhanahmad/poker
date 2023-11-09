@@ -49,7 +49,28 @@ Future<dynamic> ShowCapturedWidget(
     DataController _ = Get.find();
     return Scaffold(
       appBar: AppBar(
-        // title: 
+        automaticallyImplyLeading: false,
+         title: 
+             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(height: 24,width: 123,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/back.png"))),)),
+
+                              GestureDetector(
+                onTap: () {
+                  // Get.back();
+                },
+                child: Row(
+                  children: [
+                    Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
+                    Text("Poker Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
+                  ],
+                )),
+            ],),
         // Row(
         //   children: [
         //     const Text('Back', style: TextStyle(color: Colors.white)),
@@ -638,48 +659,51 @@ class _PlayerWidgetState extends State<PlayerWidget> {
               children: [
                 Expanded(
                   flex: 3,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        data.name,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                      Text(
-                        data.amount.toString(),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                      Text(
-                        data.finalAmount.toString(),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                        GestureDetector(
-                          onTap: (){
-                             
-                          isExpanded=!isExpanded;
-                          setState(() {
-                            
-                          });
-                
-                          },
-                          child: Text(
-                          data.lastAmount.toString(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal:45.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          data.name,
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 20),
-                                              ),
                         ),
-                    ],
+                        Text(
+                          data.amount.toString(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                        Text(
+                          data.finalAmount.toString(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                          GestureDetector(
+                            onTap: (){
+                               
+                            isExpanded=!isExpanded;
+                            setState(() {
+                              
+                            });
+                                  
+                            },
+                            child: Text(
+                            data.lastAmount.toString(),
+                            style: TextStyle(
+                                color: data.lastAmount <0 ? Colors.red:Colors.green,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                                                ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
                 //  Expanded(

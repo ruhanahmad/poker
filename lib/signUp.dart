@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:poker/authentication.dart';
 import 'package:poker/controllers/data_controller.dart';
@@ -55,8 +56,9 @@ final _formKey = GlobalKey<FormState>();
                     },
                     child: Row(
                       children: [
-                        Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
-                        Text("Poken Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
+                        Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/pokercalculator.png"))),),
+                        Text("Poken Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),),
+                        SizedBox(width: 5,)
                       ],
                     )),
                 ],),
@@ -93,12 +95,17 @@ final _formKey = GlobalKey<FormState>();
                                                                               controller: _userNameController,
                                                                                
                                                                               decoration: InputDecoration(
-                                                                                  contentPadding: EdgeInsets.symmetric(vertical:11),
+                                                                                   contentPadding: EdgeInsets.symmetric(vertical:8),
                                                                               
                                                                                  // floatingLabelBehavior: FloatingLabelBehavior.always,
                                                                                  border: InputBorder.none,
                                                                                   // Remove the underline
-                                                                                hintText: 'Username'),
+                                                                                hintText: 'Username*',
+                                                                                 hintStyle: TextStyle(color: Color(0xFFD2D2D2,),
+                                                                                 fontStyle: FontStyle.italic
+                                                                                 ),
+                                                                                
+                                                                                ),
                                                                                 
                                                                                  validator: (value) {
                                                                                         if (value!.isEmpty) {
@@ -129,9 +136,16 @@ final _formKey = GlobalKey<FormState>();
                                                   child: TextFormField(
                                                     controller: _emailController,
                                                     decoration: InputDecoration(
-                                                        contentPadding: EdgeInsets.symmetric(vertical:11),
+                                                          contentPadding: EdgeInsets.symmetric(vertical:8),
                              border: InputBorder.none, // Remove the underline
-                            hintText: 'email'),
+                            hintText: 'Email Address',
+                           hintStyle: TextStyle(color: Color(0xFFD2D2D2,),
+                                                                                 fontStyle: FontStyle.italic
+                            
+                            
+                            ),
+                            
+                            ),
                              validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Please enter your email.';
@@ -145,39 +159,39 @@ final _formKey = GlobalKey<FormState>();
                                           ),
                                           
                                           
-                                           SizedBox(height: 10,),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                               Container(height: 57,width:57,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/phone.png"))),),
-                                              Container(
-                                                height: 40,
-                                                width: 291,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius: BorderRadius.circular(25)),
+                            //                SizedBox(height: 10,),
+                            //               Row(
+                            //                 mainAxisAlignment: MainAxisAlignment.center,
+                            //                 children: [
+                            //                    Container(height: 57,width:57,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/phone.png"))),),
+                            //                   Container(
+                            //                     height: 40,
+                            //                     width: 291,
+                            //                     decoration: BoxDecoration(
+                            //                       color: Colors.white,
+                            //                       borderRadius: BorderRadius.circular(25)),
                                                 
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: TextFormField(
-                                                    keyboardType: TextInputType.number,
-                                                    controller: _phoneController,
-                                                    decoration: InputDecoration(
-                                                        contentPadding: EdgeInsets.symmetric(vertical:11),
-                             border: InputBorder.none, // Remove the underline
-                            hintText: 'phone'),
-                             validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'Please enter your phone.';
-                                      }
-                                      return null;
-                                            },
-                                                  ),
-                                                ),
-                                              ),
+                            //                     child: Padding(
+                            //                       padding: const EdgeInsets.all(8.0),
+                            //                       child: TextFormField(
+                            //                         keyboardType: TextInputType.number,
+                            //                         controller: _phoneController,
+                            //                         decoration: InputDecoration(
+                            //                               contentPadding: EdgeInsets.symmetric(vertical:8),
+                            //  border: InputBorder.none, // Remove the underline
+                            // hintText: 'phone'),
+                            //  validator: (value) {
+                            //           if (value!.isEmpty) {
+                            //             return 'Please enter your phone.';
+                            //           }
+                            //           return null;
+                            //                 },
+                            //                       ),
+                            //                     ),
+                            //                   ),
                                            
-                                            ],
-                                          ),
+                            //                 ],
+                            //               ),
                                           
                                               SizedBox(height: 10,),
                                           Row(
@@ -197,9 +211,13 @@ final _formKey = GlobalKey<FormState>();
                                                     obscureText: true,
                                                     controller: _passwordController,
                                                     decoration: InputDecoration(
-                                                        contentPadding: EdgeInsets.symmetric(vertical:11),
+                                                          contentPadding: EdgeInsets.symmetric(vertical:8,),
                              border: InputBorder.none, // Remove the underline
-                            hintText: 'password'),
+                            hintText: 'password',
+                             hintStyle: TextStyle(color: Color(0xFFD2D2D2,),
+                                                                                 fontStyle: FontStyle.italic,),
+                            
+                            ),
                              validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Please enter your password.';
@@ -230,9 +248,13 @@ final _formKey = GlobalKey<FormState>();
                                                     obscureText: true,
                                                     controller: _confirmPasswordController,
                                                     decoration: InputDecoration(
-                                                        contentPadding: EdgeInsets.symmetric(vertical:11),
+                                                          contentPadding: EdgeInsets.symmetric(vertical:8),
                              border: InputBorder.none, // Remove the underline
-                            hintText: 'Confirm Password'),
+                            hintText: 'Confirm Password',
+                                 hintStyle: TextStyle(color: Color(0xFFD2D2D2,),
+                                                                                 fontStyle: FontStyle.italic,),
+                            
+                            ),
                             validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Please confirm your password.';
@@ -262,6 +284,7 @@ final _formKey = GlobalKey<FormState>();
                                             ),
                                             onPressed: () async {
                                              try {
+                                              EasyLoading.show();
                                                   if (_emailController.text.isEmpty ||
                   _passwordController.text.isEmpty ||
                   _confirmPasswordController.text.isEmpty ||
@@ -274,6 +297,7 @@ final _formKey = GlobalKey<FormState>();
 
                   else
                   {
+                    
                        UserCredential userCredential =
                                                   await _auth.createUserWithEmailAndPassword(
                                                 email: _emailController.text,
@@ -286,7 +310,7 @@ final _formKey = GlobalKey<FormState>();
                       _userNameController.text = "";
                   _phoneController.text = "";
                   Get.to(AuthScreen());
-                              
+                        EasyLoading.dismiss();      
                   }
                                              
                                              // await FirebaseFirestore.instance.collection("users").doc(userCredential.user!.uid).collection("games").add({});
@@ -297,6 +321,7 @@ final _formKey = GlobalKey<FormState>();
                                               
                                               
                                             } catch (e) {
+                                              EasyLoading.dismiss();
                                               print('Error signing in: $e');
                                             }
                                             },

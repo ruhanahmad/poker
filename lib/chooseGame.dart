@@ -27,7 +27,7 @@ class _ChooseGamesScreenState extends State<ChooseGamesScreen> {
         elevation: 0,
         automaticallyImplyLeading: false,
         backgroundColor: Color(0xFF505771),
-        title: Text("Welcome"),
+        title: Text("Welcome",style: TextStyle(fontStyle: FontStyle.italic),),
         actions: [
            ElevatedButton(
            style: ButtonStyle(
@@ -38,7 +38,7 @@ class _ChooseGamesScreenState extends State<ChooseGamesScreen> {
                       Get.to(()=>AuthScreen());
                     PreferencesManager.instance.removeUserName();
                   },
-                  child: Text('Sign out'),
+                  child: Text('Log out',style: TextStyle(color: Color(0xFFC2BABA)),),
                 ),
         ],
       ),
@@ -72,16 +72,19 @@ class _ChooseGamesScreenState extends State<ChooseGamesScreen> {
                        
                          ),
                                             
-                         child: Row(
-                           children: [
-                       Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
-                       SizedBox(width:50,),
-                             Center(
-                               child: Text("Poker",    style: const TextStyle(  fontSize: 25.0,fontFamily: 'Open Sans',
-                                                     fontWeight: FontWeight.w800,
-                                                     color: Colors.white,)),
-                             ),
-                           ],
+                         child: Padding(
+                           padding: const EdgeInsets.symmetric(horizontal:30.0),
+                           child: Row(
+                             children: [
+                                                Container(height: 35,width: 35,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"),fit: BoxFit.cover)),),
+                                                SizedBox(width:50,),
+                               Center(
+                                 child: Text("Poker",    style: const TextStyle(  fontSize: 25.0,fontFamily: 'Open Sans',
+                                                       fontWeight: FontWeight.w800,
+                                                       color: Colors.white,)),
+                               ),
+                             ],
+                           ),
                          ),
                          ),
                        ),
@@ -101,19 +104,23 @@ SizedBox(height: 20,),
                        
                          ),
                                             
-                         child: Row(
-                           children: [
-                       Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/posts.png"))),),
-                       SizedBox(width:50,),
-                             Center(
-                               child: Text("History/Ledger",    style: const TextStyle(  fontSize: 25.0,fontFamily: 'Open Sans',
-                                                     fontWeight: FontWeight.w800,
-                                                     color: Colors.white,)),
-                             ),
-                           ],
+                         child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal:30.0),
+                           child: Row(
+                             children: [
+                                                Container(height: 35,width: 35,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/posts.png"),fit: BoxFit.cover)),),
+                                                SizedBox(width:20,),
+                               Center(
+                                 child: Text("History/Ledger",    style: const TextStyle(  fontSize: 25.0,fontFamily: 'Open Sans',
+                                                       fontWeight: FontWeight.w800,
+                                                       color: Colors.white,)),
+                               ),
+                             ],
+                           ),
                          ),
                          ),
                        ),
+                       SizedBox(height: 100,)
           ],
         ),
       ),
