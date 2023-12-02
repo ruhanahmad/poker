@@ -664,26 +664,35 @@ class _PlayerWidgetState extends State<PlayerWidget> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          data.name,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            data.name,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                          ),
                         ),
-                        Text(
-                          data.amount.toString(),
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            data.amount.toString(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                          ),
                         ),
-                        Text(
-                          data.finalAmount.toString(),
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            data.finalAmount.toString(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                          ),
                         ),
                           GestureDetector(
                             onTap: (){
@@ -699,7 +708,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
                             style: TextStyle(
                                 color: data.lastAmount <0 ? Colors.red:Colors.green,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20),
+                                fontSize: 15),
                                                 ),
                           ),
                       ],

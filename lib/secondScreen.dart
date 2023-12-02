@@ -97,7 +97,9 @@ class SecondScreen extends StatelessWidget {
    Get.back();
  },
  child: 
- Container(height: 24,width: 123,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/back.png"))),)),
+ Container(height: 24,width: 123,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/back.png"))),)
+ 
+ ),
          SizedBox(width: 30,),
                GestureDetector(
  onTap: () {
@@ -106,7 +108,7 @@ class SecondScreen extends StatelessWidget {
  child: Row(
    children: [
      Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
-     Text("Poken Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
+     Text("Poker Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
    ],
  )),
                ],),
@@ -181,7 +183,7 @@ class SecondScreen extends StatelessWidget {
             height: 40,
             color: const Color(0xFF626D94),
             child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50.0),
+              padding: EdgeInsets.symmetric(horizontal: 48.0),
               child: Row(
                 children: [
                   Text('Players', style: TextStyle(color: Colors.white,fontFamily: 'OpenSans')),
@@ -364,7 +366,7 @@ double showvalues = 1;
 
       return Container(
         height: size.width * .175,
-        margin: const EdgeInsets.symmetric(vertical: 5.0),
+        margin: const EdgeInsets.symmetric(vertical: 6.0),
         decoration: BoxDecoration(
           color: savedIcon ? const Color(0xff85A18A) : const Color(0xFFB6B07B),
           borderRadius: BorderRadius.circular(10.0),
@@ -374,28 +376,39 @@ double showvalues = 1;
             Expanded(
               flex: 3,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    data.name,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                  SizedBox(width: 50,),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      data.name,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
                   ),
-                  Text(
-                    data.buyIn.toString(),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                  SizedBox(width: 10,),
+                  Expanded(
+                    flex: 1,
+                    child: Text(
+                      data.buyIn.toString(),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
                   ),
-                  Text(
-                    data.amount.toString(),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                  Expanded(
+                    flex:1,
+                    child: Text(
+                      data.amount.toString(),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
                   ),
                 ],
               ),

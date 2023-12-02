@@ -114,7 +114,7 @@ class ThirdScreen extends StatelessWidget {
  child: Row(
    children: [
      Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
-     Text("Poken Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
+     Text("Poker Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
    ],
  )),
                ],),
@@ -191,7 +191,7 @@ class ThirdScreen extends StatelessWidget {
               height: 40,
               color: const Color(0xFF626D94),
               child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50.0),
+                padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: Row(
                   children: [
                     Text('Players', style: TextStyle(color: Colors.white)),
@@ -300,55 +300,112 @@ class _PlayerWidgetState extends State<PlayerWidget> {
             SizedBox(height: size.width*.025,),
             Row(
               children: [
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        data.name,
-                        style: const TextStyle(
+                Container(
+                  width: MediaQuery.of(context).size.width - 130,
+                  
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal:30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                    Expanded(
+                      flex: 2,
+                      child: Text(data.name,
+                                              style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                      Text(
-                        data.buyIn.toString(),
-                        style: const TextStyle(
+                            fontSize: 15),
+                      )),
+                    Expanded(
+                      flex: 1,
+                      child: Text(data.buyIn.toString(),     style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                     
-                    ],
+                            fontSize: 15),)),
+                      SizedBox(width: 50,),
+                   
+                
+                              //  SizedBox(width: 30,),
+                       
+                    ],),
                   ),
                 ),
-                SizedBox(width:80),
-                 Row(
-             
-                   children: [
-                      Text(
-                       data.amount.toString(),
-                       style: const TextStyle(
-                           color: Colors.white,
-                           fontWeight: FontWeight.bold,
-                           fontSize: 20),
-                     ),
-                     SizedBox(width: 30,),
-                   Container(height: 20,width: 20,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/database.png"))),),
-                     InkWell(
-                       onTap: (){
-                         isExpanded=!isExpanded;
-                         setState(() {
-                           
-                         });
-                       },
-                       child: Icon(isExpanded?Icons.keyboard_arrow_up: Icons.keyboard_arrow_down,color: Color(0xff97EEA5),),),
-            
-                   ],
+
+                 Expanded(
+                  flex: 2,
+                   child: Text(data.amount.toString(),     style: const TextStyle(
+                         color: Colors.white,
+                         fontWeight: FontWeight.bold,
+                         fontSize: 15),),
                  ),
+                 //SizedBox(width: 10,),
+                        Expanded(
+                          flex: 1,
+                          child: Container(height: 20,width: 20,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/database.png"))),)),
+                     Expanded(
+                   
+                       child: InkWell(
+                         onTap: (){
+                           isExpanded=!isExpanded;
+                           setState(() {
+                             
+                           });
+                         },
+                         child: Icon(isExpanded?Icons.keyboard_arrow_up: Icons.keyboard_arrow_down,color: Color(0xff97EEA5),),),
+                     ),
               ],
             ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       flex: 1,
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //         children: [
+            //           Text(
+            //             data.name,
+            //             style: const TextStyle(
+            //                 color: Colors.white,
+            //                 fontWeight: FontWeight.bold,
+            //                 fontSize: 20),
+            //           ),
+            //           Text(
+            //             data.buyIn.toString(),
+            //             style: const TextStyle(
+            //                 color: Colors.white,
+            //                 fontWeight: FontWeight.bold,
+            //                 fontSize: 20),
+            //           ),
+                     
+            //         ],
+            //       ),
+            //     ),
+            //     SizedBox(width:80),
+            //      Row(
+             
+            //        children: [
+            //           Text(
+            //            data.amount.toString(),
+            //            style: const TextStyle(
+            //                color: Colors.white,
+            //                fontWeight: FontWeight.bold,
+            //                fontSize: 20),
+            //          ),
+            //          SizedBox(width: 30,),
+            //        Container(height: 20,width: 20,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/database.png"))),),
+            //          InkWell(
+            //            onTap: (){
+            //              isExpanded=!isExpanded;
+            //              setState(() {
+                           
+            //              });
+            //            },
+            //            child: Icon(isExpanded?Icons.keyboard_arrow_up: Icons.keyboard_arrow_down,color: Color(0xff97EEA5),),),
+            
+            //        ],
+            //      ),
+            //   ],
+            // ),
         if(isExpanded)
         Builder(
           builder: (context) {

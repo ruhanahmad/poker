@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     DataController _ = Get.put(DataController());
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
           // appBar: AppBar(
@@ -18,12 +19,13 @@ class MyApp extends StatelessWidget {
           // ),
           backgroundColor: const Color(0xFF505771),
           body: Container(
-            height:900,
+            height:MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
+                 SizedBox(height: 1,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal:8.0),
+                      padding: const EdgeInsets.symmetric(horizontal:8.0,),
                       child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(height: 24,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"))),),
-                          Text("Poken Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
+                          Text("Poker Calculator",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w800,color: Colors.white),)
                         ],
                       )),
                                     ],),
@@ -149,7 +151,10 @@ class MyApp extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Expanded(
+                                  SizedBox(width: 40,),
+                                  Container(
+                                    height: 100,
+                                    width: 140,
                                     child: TextField(
                                       controller: _.buyInController,
                                       keyboardType: TextInputType.number,
@@ -160,7 +165,7 @@ class MyApp extends StatelessWidget {
                                         color: Colors.white,
                                       ),
                                       decoration: const InputDecoration(
-                                         hintText: '500',
+                                         hintText: '0',
                                       hintStyle: TextStyle(
                                         fontSize: 60.0,
                                         fontWeight: FontWeight.bold,
@@ -168,10 +173,10 @@ class MyApp extends StatelessWidget {
                                         fontFamily:'Open Sans'
                                       ),
                                             border: InputBorder.none, // Remove the border
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue), // Customize the underline when focused
-                ),
-                             ),
+                                                  focusedBorder: UnderlineInputBorder(
+                                                    borderSide: BorderSide(color: Colors.blue), // Customize the underline when focused
+                                                  ),
+                                                               ),
                                       
                                     ),
                                   ),
@@ -191,13 +196,13 @@ class MyApp extends StatelessWidget {
                                   //     style: TextStyle(fontSize: 20.0),
                                   //   ),
                                   // ),
-
+          
                                    Container(height: 34,width: 34,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/design.png"),fit: BoxFit.cover)),),
                                 ],
                               ),
                             ),
                         SizedBox(height: 270,),
-
+          
                         // Spacer(),
                             Container(
                               height:67 ,
