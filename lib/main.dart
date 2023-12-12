@@ -84,9 +84,10 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-            TextField(
-              decoration: InputDecoration(labelText: 'Buy-In Amount'),
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Buy-In Amount',    border: InputBorder.none,),
               keyboardType: TextInputType.number,
+          
               onChanged: (value) {
                 setState(() {
                   buyInAmount = double.parse(value);
@@ -107,7 +108,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
-              child: Text('Next'),
+              child: Text('Next',style: const TextStyle(  fontSize: 14.0,fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,)),
             ),
           ],
         ),

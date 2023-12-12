@@ -229,7 +229,9 @@ class MyApp extends StatelessWidget {
                                     children: [
                                       Text(
                                         'Next',
-                                        style: TextStyle(fontSize: 20.0),
+                                        style: const TextStyle(  fontSize: 20.0,fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,)
                                       ),
                                     ],
                                   ),

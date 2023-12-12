@@ -27,7 +27,7 @@ class _ChooseGamesScreenState extends State<ChooseGamesScreen> {
         elevation: 0,
         automaticallyImplyLeading: false,
         backgroundColor: Color(0xFF505771),
-        title: Text("Welcome",style: TextStyle(fontStyle: FontStyle.italic),),
+        title: Text("Welcome",style: TextStyle(fontStyle: FontStyle.italic,color: const Color.fromARGB(255, 248, 248, 248),fontSize: 14),),
         actions: [
            ElevatedButton(
            style: ButtonStyle(
@@ -38,7 +38,7 @@ class _ChooseGamesScreenState extends State<ChooseGamesScreen> {
                       Get.to(()=>AuthScreen());
                     PreferencesManager.instance.removeUserName();
                   },
-                  child: Text('Log out',style: TextStyle(color: Color(0xFFC2BABA)),),
+                  child: Text('Log out',style: TextStyle(color: Color(0xFFC2BABA),fontSize: 14),),
                 ),
         ],
       ),
@@ -79,7 +79,7 @@ class _ChooseGamesScreenState extends State<ChooseGamesScreen> {
                                                 Container(height: 35,width: 35,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/casino.png"),fit: BoxFit.cover)),),
                                                 SizedBox(width:50,),
                                Center(
-                                 child: Text("Poker",    style: const TextStyle(  fontSize: 25.0,fontFamily: 'Open Sans',
+                                 child: Text("Poker",    style: const TextStyle(  fontSize: 24.0,fontFamily: 'Open Sans',
                                                        fontWeight: FontWeight.w800,
                                                        color: Colors.white,)),
                                ),
@@ -111,7 +111,7 @@ SizedBox(height: 20,),
                                                 Container(height: 35,width: 35,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/posts.png"),fit: BoxFit.cover)),),
                                                 SizedBox(width:20,),
                                Center(
-                                 child: Text("History/Ledger",    style: const TextStyle(  fontSize: 25.0,fontFamily: 'Open Sans',
+                                 child: Text("History/Ledger",    style: const TextStyle(  fontSize: 24.0,fontFamily: 'Open Sans',
                                                        fontWeight: FontWeight.w800,
                                                        color: Colors.white,)),
                                ),

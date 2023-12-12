@@ -33,9 +33,16 @@ class History extends StatelessWidget {
     DataController _ = Get.find();
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Row(
+          
           children: [
-            const Text('Back', style: TextStyle(color: Colors.white)),
+            GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(height: 24,width: 123,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/back.png"))),)),
+            // const Text('Back', style: TextStyle(color: Colors.white)),
             const Spacer(),
             // TextButton.icon(
             //   onPressed: () {
@@ -259,5 +266,4 @@ class History extends StatelessWidget {
     );
   }
 }
-
 

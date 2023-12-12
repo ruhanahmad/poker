@@ -44,7 +44,8 @@ class _AuthScreenState extends State<AuthScreen> {
                          Text("Sign in to Continue",
                 style: const TextStyle(  fontSize: 14.0,fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w800,
-                        color: Colors.white,)),
+                        color: Colors.white,)
+                        ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal:9.0),
               child: Row(
